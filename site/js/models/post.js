@@ -9,6 +9,9 @@ module.exports = Backbone.Model.extend({
 	defaults: {
 		title: 'Default title',
 		body: 'Default body'
-	}
+	},
+
+	fileAttribute: 'photo'
+
 });
 

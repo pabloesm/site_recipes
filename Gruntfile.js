@@ -7,13 +7,14 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'site/bundle.js': ['site/js/*/*.js']
+					//'site/app.bundle.js': 'site/js/app/app.js'
+					'site/admin.bundle.js': 'site/js/app/admin.js'
 				}
 			}
 		},
 
 		eslint: {
-			target: ['site/js/*/*.js', 'site/js/*.js','!site/js/lib/']
+			target: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js','!site/js/lib/']
 		},
 
 		watch: {
@@ -37,5 +38,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-eslint');
 
   grunt.registerTask('default', ['eslint', 'browserify']);
+  grunt.registerTask('bro', ['browserify']);
   // grunt.registerTask('deploy', 'linter + browserify + uglify', ['eslint', 'browserify', 'uglify']);
 };

@@ -1,3 +1,5 @@
+// Entry point for users
+
 'use strict';
 
 var Backbone = require('backbone'),
@@ -6,7 +8,7 @@ var Backbone = require('backbone'),
 Backbone.$ = $;
 
 
-var PostView = require('../views/post.js')
+var PostView = require('../views/post')
 
 // var ModelPost = require('./models/post.js'),
 // 	ViewPost = require('.views/post.js');

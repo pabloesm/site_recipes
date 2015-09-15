@@ -4,7 +4,7 @@
   "description": "backbone.js example",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "initdb": "mongod -dbpath ~/work/mongodb/data/db/"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,11 @@
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "jquery": "^2.1.4",
+    "mkdirp": "^0.5.1",
+    "mongoose": "^4.1.6",
+    "multer": "^1.0.3",
+    "path": "^0.11.14",
+    "slug": "^0.9.1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
