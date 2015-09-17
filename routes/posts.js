@@ -3,7 +3,8 @@ var express = require('express'),
 	mongoose = require('mongoose'), // Mongo database
 	path = require('path'), // Path utilities
 	multer = require('multer'), // Files upload
-	mkdirp = require('mkdirp'); // Like mkdir -p, but in node.js
+	mkdirp = require('mkdirp'), // Like mkdir -p, but in node.js
+	fs = require('fs');
 
 
 // Multer file upload management
@@ -22,6 +23,21 @@ var	fields = [
 		{name: 'photoMain', maxCount: 1},
 		{name: 'photoOthers', maxCount: 10}
 	];
+
+// Refactor to other file
+var relocate = function(files, newPath){
+	files.forEach(function(file){
+		var dest = newPath + '/' + file.filename;
+		fs.rename(file.path, dest, function(err){
+			if (err) {
+				console.log(err);
+			} else {
+				console.log('Renamed.');
+			}
+		});
+	});
+};
+
 
 
 // Mongo DB
@@ -62,6 +78,7 @@ router.route('/')
 		console.log(req.headers);
 
 		var date = new Date(),
+			year = date.getFullYear(),
 			currentTime = date.getTime();
 
 		var post = new PostModel({
@@ -72,11 +89,15 @@ router.route('/')
 			keywords: req.body.keywords
 		});
 
-		mkdirp('data/img/' + req.body.idReadable, function(err){
+		var photoPath = 'data/img/' + year + '/' + req.body.idReadable;
+
+		mkdirp(photoPath, function(err){
 			if (err) {
 				console.error(err);
 			} else {
 				console.log('Directory ' + req.body.idReadable + ' created.');
+				relocate(req.files['photoMain'], photoPath);
+				relocate(req.files['photoOthers'], photoPath);
 			}
 		});
 
