@@ -3,7 +3,7 @@
 var Backbone = require('backbone'),
 	$ = require('jquery'),
 	_ = require('underscore'),
-	slug = require('slug');
+	slug = require('slug'); // String processing
 
 require('../lib/backbone-model-file-upload.js');
 

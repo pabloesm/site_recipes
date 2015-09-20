@@ -6,12 +6,15 @@ var Backbone = require('backbone'),
 Backbone.$ = $;
 
 module.exports = Backbone.Model.extend({
+	urlRoot: '/api/posts',
+
+	idAttribute: '_id',
+
 	defaults: {
 		title: 'Default title',
-		body: 'Default body'
-	},
-
-	fileAttribute: 'photo'
+		body: 'Default body',
+		keywords: 'Default keyword'
+	}
 
 });
 

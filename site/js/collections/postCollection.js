@@ -8,6 +8,5 @@ var PostModel = require('../models/post')
 Backbone.$ = $;
 
 module.exports = Backbone.Collection.extend({
-	model: PostModel,
-	url: '/api/posts'
+	model: PostModel
 });

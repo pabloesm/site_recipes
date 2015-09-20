@@ -4,7 +4,8 @@ var express = require('express'),
 	path = require('path'), // Path utilities
 	multer = require('multer'), // Files upload
 	mkdirp = require('mkdirp'), // Like mkdir -p, but in node.js
-	fs = require('fs');
+	marked = require('marked'), // Markdown engine
+	fs = require('fs'); // File system
 
 
 // Multer file upload management
@@ -110,6 +111,20 @@ router.route('/')
 			}
 		});
 
+	});
+
+
+router.route('/:id')
+
+	.get(function(req, res){
+		return PostModel.findById(req.params.id, function(err, post){
+			if(!err){
+				post._doc.body = marked(post._doc.body)
+				return res.send(post);
+			} else {
+				return console.log(err);
+			}
+		});
 	});
 
 module.exports = router;

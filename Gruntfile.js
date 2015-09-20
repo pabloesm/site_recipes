@@ -7,8 +7,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					//'site/app.bundle.js': 'site/js/app/app.js'
-					'site/admin.bundle.js': 'site/js/app/admin.js'
+					'site/app.bundle.js': 'site/js/app/app.js'
+					//'site/admin.bundle.js': 'site/js/app/admin.js'
 				}
 			}
 		},
