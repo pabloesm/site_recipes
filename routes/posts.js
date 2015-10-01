@@ -61,11 +61,40 @@ var photoUrl = function(files, path){
 };
 
 var typeOfID = function(id) { // MAKE THIS MORE ROBUST!
-	if (id.length < 15) {
+	if (id.length < 17) {
 		return 'idReadable';
 	} else {
 		return '_id';
 	}
+};
+
+var arrayOfObjects = function(array, key) {
+	/* Given an array and a key, this function returns an array of
+	objects with key equal to the parameter key and values equal to
+	the elements of the array */
+	var arr = [];
+	array.forEach(function(val){
+		var obj = {};
+		obj[key] = val;
+		arr.push(obj)
+	});
+
+	return arr;
+};
+
+var bodyMarked = function(input){
+	/* Take a JSON object or an array of JSON objects representing post(s), then
+	applies markdown to the field 'body' and return the JSON*/
+	if( Object.prototype.toString.call(input) === '[object Array]' ) {
+		input.forEach(function(el, i){
+			input[i] = el.toJSON();
+			input[i].body = marked(input[i].body);
+		});
+
+	} else {
+		input._doc.body = marked(input._doc.body);
+	}
+	return input;
 };
 
 
@@ -73,11 +102,16 @@ var typeOfID = function(id) { // MAKE THIS MORE ROBUST!
 // Mongo DB
 mongoose.connect('mongodb://localhost/site_recipes');
 
+var PhotosOthers = new mongoose.Schema({
+	photo: String
+});
+
 var PostSchema = new mongoose.Schema({
 	title: {type: String, default: 'Post title'},
 	body: {type: String, default: 'The post body...'},
 	idReadable: {type: String, default: 'post-title'},
 	photoMain: {type: String, default: 'http://goo.gl/uzjFKj'},
+	photoOthers: [ PhotosOthers ],
 	date: Date,
 	keywords: String
 });
@@ -98,6 +132,7 @@ router.route('/')
 		return PostModel.find(function(err, posts){
 			if (!err) {
 				console.log('Sending posts array.')
+				posts = bodyMarked(posts);
 				return res.send(posts);
 			} else {
 				return console.log(err);
@@ -122,6 +157,7 @@ router.route('/')
 			body: req.body.body,
 			idReadable: req.body.idReadable,
 			photoMain: urls.photoMain,
+			photoOthers: arrayOfObjects(urls.photoOthers, 'photo'),
 			date: currentTime,
 			keywords: req.body.keywords
 		});
@@ -173,7 +209,7 @@ router.route('/:id')
 		if (typeOfID(req.params.id) == '_id') {
 			return PostModel.findById(req.params.id, function(err, post){
 				if(!err){
-					post._doc.body = marked(post._doc.body)
+					post = bodyMarked(post)
 					return res.send(post);
 				} else {
 					return console.log(err);
@@ -183,7 +219,7 @@ router.route('/:id')
 		} else {
 			return PostModel.findOne({idReadable: req.params.id}, function(err, post){
 				if(!err){
-					post._doc.body = marked(post._doc.body)
+					post = bodyMarked(post)
 					return res.send(post);
 				} else {
 					return console.log(err);

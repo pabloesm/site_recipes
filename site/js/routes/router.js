@@ -27,11 +27,14 @@ module.exports = Backbone.Router.extend({
 	},
 
 	showPost: function(postTitle){
-		var postView = new PostCollectionOne({
-			idReadable: postTitle
-		});
+		$(function(){
+			// Waiting to load all thing, then clean and show post. Dirty.
+			var postView = new PostCollectionOne({
+				idReadable: postTitle
+			});
 
-		$('#carousel').hide();
+			$('#carousel').hide();
+		});
 
 	}
 

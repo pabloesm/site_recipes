@@ -25,6 +25,8 @@ module.exports = Backbone.View.extend({
 	},
 
 	renderOne: function() {
+		$('#post-container').html('');
+
 		this.model = this.collection.findWhere(this.data);
 
 		var source =$('#postTemplate').html();

@@ -21,6 +21,7 @@ module.exports = Backbone.View.extend({
 	},
 
 	render: function(){
+		$('#post-container').html('');
 		this.collection.each(function(item){
 			this.renderPostPreview(item);
 		}, this);

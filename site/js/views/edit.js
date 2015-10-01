@@ -49,7 +49,7 @@ module.exports = Backbone.View.extend({
 		});
 
 		$.ajax({
-			url: 'posts',
+			url: '../posts',
 			type: 'POST',
 			data: data,
 			cache: false,
