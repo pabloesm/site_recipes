@@ -8,11 +8,19 @@ var Backbone = require('backbone'),
 Backbone.$ = $;
 
 
-var PostView = require('../views/post')
+// var PostView = require('../views/post')
+// $(function() {
+// 	new PostView({el: $("#post-container")});
+// });
 
-// var ModelPost = require('./models/post.js'),
-// 	ViewPost = require('.views/post.js');
+
+var PostCollectionView = require('../views/postCollection')
+var Router = require('../routes/router');
 
 $(function() {
-	new PostView({el: $("#postContainer")});
+	new PostCollectionView({el: $("#post-container")});
 });
+
+var router = new Router();
+Backbone.history.start();
+

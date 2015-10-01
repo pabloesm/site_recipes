@@ -39,6 +39,35 @@ var relocate = function(files, newPath){
 	});
 };
 
+var photoUrl = function(files, path){
+	var main = '';
+	var others = [];
+
+	if ('photoMain' in files){
+		main = 'api/' + path + '/' + files.photoMain[0].filename;
+	}
+
+	if ('photoOthers' in files){
+		files.photoOthers.forEach(function(el){
+			var elPath = 'api/' + path + '/' + el.filename;
+			others.push(elPath);
+		});
+	}
+
+	return {
+		photoMain: main,
+		photoOthers: others
+	}
+};
+
+var typeOfID = function(id) { // MAKE THIS MORE ROBUST!
+	if (id.length < 15) {
+		return 'idReadable';
+	} else {
+		return '_id';
+	}
+};
+
 
 
 // Mongo DB
@@ -48,6 +77,7 @@ var PostSchema = new mongoose.Schema({
 	title: {type: String, default: 'Post title'},
 	body: {type: String, default: 'The post body...'},
 	idReadable: {type: String, default: 'post-title'},
+	photoMain: {type: String, default: 'http://goo.gl/uzjFKj'},
 	date: Date,
 	keywords: String
 });
@@ -60,17 +90,17 @@ db.once('open', function(){
 	console.log('Connected to MongoDB')
 });
 
+
 // To be mounted on '/api/posts'
 router.route('/')
 
 	.get(function(req, res){
-		var filePath = path.normalize(__dirname + '/../site/edit.html');
-		res.sendFile(filePath, function(err){
+		return PostModel.find(function(err, posts){
 			if (!err) {
-				console.log('Sent: ', filePath);
+				console.log('Sending posts array.')
+				return res.send(posts);
 			} else {
-				console.log(err);
-				res.status(err.status).end();
+				return console.log(err);
 			}
 		});
 	})
@@ -82,15 +112,19 @@ router.route('/')
 			year = date.getFullYear(),
 			currentTime = date.getTime();
 
+		var photoPath = 'data/img/' + year + '/' + req.body.idReadable;
+
+		var urls = photoUrl(req.files, photoPath);
+		console.log(urls);
+
 		var post = new PostModel({
 			title: req.body.title,
 			body: req.body.body,
 			idReadable: req.body.idReadable,
+			photoMain: urls.photoMain,
 			date: currentTime,
 			keywords: req.body.keywords
 		});
-
-		var photoPath = 'data/img/' + year + '/' + req.body.idReadable;
 
 		mkdirp(photoPath, function(err){
 			if (err) {
@@ -114,17 +148,49 @@ router.route('/')
 	});
 
 
-router.route('/:id')
+//  /api/posts/edit
+router.route('/edit')
 
 	.get(function(req, res){
-		return PostModel.findById(req.params.id, function(err, post){
-			if(!err){
-				post._doc.body = marked(post._doc.body)
-				return res.send(post);
+		var filePath = path.normalize(__dirname + '/../site/edit.html');
+		res.sendFile(filePath, function(err){
+			if (!err) {
+				console.log('Sent: ', filePath);
 			} else {
-				return console.log(err);
+				console.log(err);
+				res.status(err.status).end();
 			}
 		});
 	});
+
+
+router.route('/:id')
+
+	.get(function(req, res){
+		/* Allows searching by different types of :id
+		typeOfID() parses the :id
+		*/
+		if (typeOfID(req.params.id) == '_id') {
+			return PostModel.findById(req.params.id, function(err, post){
+				if(!err){
+					post._doc.body = marked(post._doc.body)
+					return res.send(post);
+				} else {
+					return console.log(err);
+				}
+			});
+
+		} else {
+			return PostModel.findOne({idReadable: req.params.id}, function(err, post){
+				if(!err){
+					post._doc.body = marked(post._doc.body)
+					return res.send(post);
+				} else {
+					return console.log(err);
+				}
+			});
+		}
+	});
+
 
 module.exports = router;

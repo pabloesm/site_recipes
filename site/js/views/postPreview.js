@@ -10,25 +10,27 @@ Backbone.$ = $;
 var PostModel = require('../models/post');
 
 module.exports = Backbone.View.extend({
-	el: '#post-container',
+	tagName: 'div',
 
-	initialize: function(data) {
-		this.model = new PostModel(data);
+	className: 'preview',
 
-		this.model.fetch();
-
-		this.listenTo(this.model, 'change', this.render);
+	events: {
+		'click .post-photomain': 'goToPost',
+		'click .post-title': 'goToPost'
 	},
 
 	render: function() {
-		// this.el is what we defined in tagName. use $el to get access
-		// to the jQuery html() function
-
-		//this.$el.html(this.template(this.model.attributes));
-		var source =$('#postTemplate').html();
+		var source =$('#postPreviewTemplate').html();
 		var template = Handlebars.compile(source);
 		this.$el.html(template(this.model.attributes));
 
 		return this;
+	},
+
+	goToPost: function() {
+		var idReadable = this.model.get('idReadable');
+		var url = "#post/" + idReadable;
+		window.location.href = url;
 	}
+
 });

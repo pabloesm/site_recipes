@@ -11,8 +11,12 @@ app.use("/", express.static("site"));
 app.use("/", parseUrlencoded);
 
 
+// Routes
 var edit = require('./routes/posts');
 app.use('/api/posts', edit);
+
+var data = require('./routes/data');
+app.use('/api/data', data);
 
 
 app.listen(options.port, function() {

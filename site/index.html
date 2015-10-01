@@ -7,18 +7,41 @@
 </head>
 <body>
 
-	<h1>Hello world!</h1>
-	<div id="postContainer"></div>
+	<div id="header">
+		<h3>Menu</h3>
+		<a href='#main'><h2>Logo</h2></a>
+	</div>
 
-	<!-- Underscore micro-templates -->
-	<script type="text/template" id="postTemplate">
-		<h3><%= title %></h3>
-		<p><%= body %></p>
+	<div id="carousel">
+		<h2>Carousel</h2>
+	</div>
+
+	<div id="post-container"></div>
+
+	<!-- Handlebars templates -->
+	<script id="postTemplate" type="text/x-handlebars-template">
+		<h3 class="post-title">{{title}}</h3>
+		<div class="post-photomain">
+			<img src={{photoMain}} width="400">
+		</div>
+
+		<p>{{{body}}}</p>
+
+		{{#each photoOthers}}
+			<div class="post-photoothers">
+				<img src={{photo}} with="400">
+			</div>
+		{{/each}}
+
 	</script>
 
-	<!-- Handlebars template -->
-	<script id="postHandleTemp" type="text/x-handlebars-template">
-		<h3>{{title}}</h3>
+
+
+	<script id="postPreviewTemplate" type="text/x-handlebars-template">
+		<h4 class="post-title">{{title}}</h4>
+		<div class="post-photomain" >
+			<img src={{photoMain}} width="250">
+		</div>
 		<p>{{{body}}}</p>
 	</script>
 

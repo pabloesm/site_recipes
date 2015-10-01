@@ -14,11 +14,11 @@ module.exports = function(grunt) {
 		},
 
 		eslint: {
-			target: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js','!site/js/lib/']
+			target: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js', '!site/js/lib/']
 		},
 
 		watch: {
-			files: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/app.js',],
+			files: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js', 'site/js/app.js',],
 			tasks: ['eslint', 'browserify']
 		},
 

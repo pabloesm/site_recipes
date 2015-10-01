@@ -39,7 +39,7 @@ module.exports = Backbone.View.extend({
 				} else {
 					data.append(el.id, $(el).val());
 					if (el.id == 'title') {
-						data.append('idReadable', slug($(el).val()));
+						data.append('idReadable', slug($(el).val().toLowerCase()));
 					}
 				}
 			}

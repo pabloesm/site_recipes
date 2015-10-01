@@ -6,9 +6,9 @@ var Backbone = require('backbone'),
 Backbone.$ = $;
 
 module.exports = Backbone.Model.extend({
-	urlRoot: '/api/posts',
-
 	idAttribute: '_id',
+
+	// urlRoot : 'api/posts/expressjs',
 
 	defaults: {
 		title: 'Default title',
