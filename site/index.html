@@ -4,44 +4,77 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Backbone.js - Recipes</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/index.css">
 </head>
 <body>
 
-	<div id="header">
-		<h3>Menu</h3>
-		<a href='#main'><h2>Logo</h2></a>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+
+			<ul class="nav navbar-nav">
+				<li><a href="#main">Home</a></li>
+				<li><a href="#">Restaurantes</a></li>
+				<li><a href="#">Recetas</a></li>
+				<li><a href="#">Contacto</a></li>
+				<li><a href="#">Nosotros</a></li>
+			</ul>
+
+	    <form class="navbar-form navbar-right" role="search">
+			  <div class="form-group">
+			    <input type="text" class="form-control" placeholder="Buscar">
+			  </div>
+			</form>
+
+	  </div>
+	</nav>
+
+	<div id="main" class="container">
+		<div id="header">
+			<a href="#main"><img src="img/logoD.png" width="210" class="img-responsive center-block"></a>
+		</div>
+
+		<div id="carousel">
+			<h2>Carousel</h2>
+		</div>
+
+		<div class="row">
+			<div id="post-container"></div>
+		</div>
+
+		<div id="footer">
+			<h5>Footer</h5>
+		</div>
 	</div>
 
-	<div id="carousel">
-		<h2>Carousel</h2>
-	</div>
-
-	<div id="post-container"></div>
 
 	<!-- Handlebars templates -->
 	<script id="postTemplate" type="text/x-handlebars-template">
-		<h3 class="post-title">{{title}}</h3>
-		<div class="post-photomain">
-			<img src={{photoMain}} width="400">
-		</div>
-
-		<p>{{{body}}}</p>
-
-		{{#each photoOthers}}
-			<div class="post-photoothers">
-				<img src={{photo}} width="400">
+		<div class="col-md-8 col-md-offset-2">
+			<h3 class="post-title">{{title}}</h3>
+			<div class="post-photomain">
+				<img src={{photoMain}} width="628">
 			</div>
-		{{/each}}
 
+			<p>{{{body}}}</p>
+
+			{{#each photoOthers}}
+				<div class="post-photoothers">
+					<img src={{photo}} width="628">
+				</div>
+			{{/each}}
+		</div>
 	</script>
 
-
 	<script id="postPreviewTemplate" type="text/x-handlebars-template">
-		<h4 class="post-title">{{title}}</h4>
-		<div class="post-photomain" >
-			<img src={{photoMain}} width="250">
+		<div class="col-md-4">
+			<h4 class="post-title">{{title}}</h4>
+			<div class="post-photomain" >
+				<img src={{photoMain}} width="298">
+			</div>
+			<p>{{{body}}}</p>
 		</div>
-		<p>{{{body}}}</p>
 	</script>
 
 	<script src="app.bundle.js"></script>

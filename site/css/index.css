@@ -1,0 +1,13 @@
+#main {
+	margin-top: 80px;
+}
+
+#header{
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+.nav {
+	text-transform: uppercase;
+	font-size: 13px;
+}
