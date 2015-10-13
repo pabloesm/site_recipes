@@ -2,7 +2,7 @@
 	margin-top: 80px;
 }
 
-#header{
+#header {
 	margin-top: 10px;
 	margin-bottom: 30px;
 }
@@ -10,4 +10,20 @@
 .nav {
 	text-transform: uppercase;
 	font-size: 13px;
+}
+
+.post-photomain {
+	position: relative;
+}
+
+.labels {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-radius: 0px;
+	background-color: #13B08B;
+	position: absolute;
+	top: 193px;
+	left: 0px;
 }

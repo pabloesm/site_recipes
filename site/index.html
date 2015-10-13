@@ -17,6 +17,7 @@
 				<li><a href="#main">Home</a></li>
 				<li><a href="#">Restaurantes</a></li>
 				<li><a href="#">Recetas</a></li>
+				<li><a href="#">Whishlist</a></li>
 				<li><a href="#">Contacto</a></li>
 				<li><a href="#">Nosotros</a></li>
 			</ul>
@@ -69,10 +70,11 @@
 
 	<script id="postPreviewTemplate" type="text/x-handlebars-template">
 		<div class="col-md-4">
-			<h4 class="post-title">{{title}}</h4>
 			<div class="post-photomain" >
 				<img src={{photoMain}} width="298">
+				<p class="labels">Etiqueta</p>
 			</div>
+			<h4 class="post-title">{{title}}</h4>
 			<p>{{{body}}}</p>
 		</div>
 	</script>
