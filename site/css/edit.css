@@ -1,3 +1,16 @@
 label, input {
     display: block;
 }
+
+#add {
+	display: block;
+}
+
+#newPost {
+	width: 720px;
+	margin: auto;
+}
+
+h1 {
+	text-align: center;
+}

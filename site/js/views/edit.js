@@ -37,6 +37,7 @@ module.exports = Backbone.View.extend({
 						data.append(el.id, this);
 					});
 				} else {
+					console.log(el.id);
 					data.append(el.id, $(el).val());
 					if (el.id == 'title') {
 						data.append('idReadable', slug($(el).val().toLowerCase()));
@@ -44,8 +45,15 @@ module.exports = Backbone.View.extend({
 				}
 			}
 
+		$('#addPost div fieldset').children(['textarea']['input']).each(function(i, el) {
+			if ( $(el).val() != '') {
+				console.log(el.id);
+				data.append(el.id, $(el).val());
+			}
+		});
+
 			//Clear input field values
-			$(el).val('');
+			//$(el).val('');
 		});
 
 		$.ajax({
@@ -56,12 +64,12 @@ module.exports = Backbone.View.extend({
 			contentType: false,
 			processData: false,
 			success: function() {
-				console.log('fuck yeah!')
+				console.log('Post info send to server.')
 			}
 		});
 
-
-	}
+	return false;
+}
 
 
 });

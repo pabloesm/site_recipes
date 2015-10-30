@@ -1,0 +1,162 @@
+$minwidth: 700px;
+
+// ------------------------------
+// Navbar
+// ------------------------------
+
+// Layout
+.navbar {
+	border-bottom: 1px solid #dddddd;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	height: 60px;
+	weight: 690px;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+	background-color: white;
+
+	ul {
+		display: inline-block;
+	}
+
+	li {
+		display: inline-block;
+		padding: 10px 5px 5px 5px;
+		margin: 10px 15px 10px 15px;
+	}
+
+	form {
+		float: right;
+		margin-top: 14px;
+
+		input {
+			border-radius: 20px;
+			font-size: 12px;
+			padding: 0px 10px 0px 10px;
+			height: 30px;
+		}
+	}
+
+}
+
+
+// Typo
+.navbar {
+	li {
+		text-transform: uppercase;
+		font-size: 12px;
+
+		a {
+			text-decoration: none;
+		}
+	}
+}
+
+
+body {
+	background-color: white;
+}
+
+
+
+// ------------------------------
+// Logo
+// ------------------------------
+#header {
+	width: 210px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+
+// ------------------------------
+// Carousel
+// ------------------------------
+// Layout
+.content {
+	margin: auto;
+	margin-top: 30px;
+	width: 100%;
+}
+
+.slick-carousel div{
+	height: 420px;
+	background-color: steelblue;
+	min-width: $minwidth;
+}
+
+.slick-prev {
+	z-index: 8;
+	left: 15px;
+}
+
+.slick-next {
+	z-index: 8;
+	right: 15px;
+}
+
+.slick-list {
+	z-index: 7;
+}
+
+.slide-1 {
+	background-image: url("../img/carousel_tresChocolates.jpg");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 100%;
+}
+
+// Typo
+.centered {
+	width: 80%;
+	margin: auto;
+	text-align: center;
+}
+
+
+
+
+// ------------------------------
+// Main
+// ------------------------------
+
+// Layout
+#main {
+	padding-top: 100px;
+	z-index: 5;
+	min-width: $minwidth;
+}
+
+
+
+// ------------------------------
+// Footer
+// ------------------------------
+
+// Layout
+#footer {
+	background-color: rgb(60, 60, 60);
+  overflow: hidden;
+  height: 80px;
+}
+
+// Typo
+#footer {
+	color: #9f9f9f;
+	text-align: center;
+
+	p {
+		margin-top: 33px;
+		font-size: 10px;
+		letter-spacing: 0.2em;
+	}
+}
+
+
+
+
+
+
+

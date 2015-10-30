@@ -25,7 +25,7 @@ var	fields = [
 		{name: 'photoOthers', maxCount: 10}
 	];
 
-// Refactor to other file
+// Refactor to other file ------------------------------
 var relocate = function(files, newPath){
 	files.forEach(function(file){
 		var dest = newPath + '/' + file.filename;
@@ -97,6 +97,14 @@ var bodyMarked = function(input){
 	return input;
 };
 
+var keywords2array = function(keys) {
+	/* Takes a string which contains the keys separated by semicolons.
+	Returns an array of trimmed keys.*/
+	var array =  keys.split(';');
+	return array.map(function(el) { return el.trim(); });
+};
+// -------------------------------------------
+
 
 
 // Mongo DB
@@ -106,14 +114,25 @@ var PhotosOthers = new mongoose.Schema({
 	photo: String
 });
 
+var Keywords = new mongoose.Schema({
+	keyword: String
+});
+
+var Address = new mongoose.Schema({
+	address: String,
+	phone: Number
+});
+
 var PostSchema = new mongoose.Schema({
 	title: {type: String, default: 'Post title'},
 	body: {type: String, default: 'The post body...'},
 	idReadable: {type: String, default: 'post-title'},
 	photoMain: {type: String, default: 'http://goo.gl/uzjFKj'},
 	photoOthers: [ PhotosOthers ],
+	keywords: [ Keywords ],
 	date: Date,
-	keywords: String
+	postType: {type: String, default: 'restaurante'},
+	url: String
 });
 
 var PostModel = mongoose.model("Post", PostSchema);
@@ -148,6 +167,7 @@ router.route('/')
 			currentTime = date.getTime();
 
 		var photoPath = 'data/img/' + year + '/' + req.body.idReadable;
+		var keys = keywords2array(req.body.keywords)
 
 		var urls = photoUrl(req.files, photoPath);
 		console.log(urls);
@@ -158,8 +178,10 @@ router.route('/')
 			idReadable: req.body.idReadable,
 			photoMain: urls.photoMain,
 			photoOthers: arrayOfObjects(urls.photoOthers, 'photo'),
+			keywords: arrayOfObjects(keys, 'keyword'),
 			date: currentTime,
-			keywords: req.body.keywords
+			postType: req.body.postType,
+			url: req.body.url
 		});
 
 		mkdirp(photoPath, function(err){
