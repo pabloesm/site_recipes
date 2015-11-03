@@ -97,11 +97,18 @@ var bodyMarked = function(input){
 	return input;
 };
 
-var keywords2array = function(keys) {
-	/* Takes a string which contains the keys separated by semicolons.
-	Returns an array of trimmed keys.*/
-	var array =  keys.split(';');
+var liststr2array = function(keys) {
+	/* Takes a string which contains a list of strings separated by commas.
+	Returns an array of trimmed strings.*/
+	var array =  keys.split(',');
 	return array.map(function(el) { return el.trim(); });
+};
+
+var listnum2array = function(keys) {
+	/* Takes a string which contains a list of numbers separated by commas.
+	Returns an array of trimmed keys.*/
+	var array =  keys.split(',');
+	return array.map(function(el) { return +el; });
 };
 // -------------------------------------------
 
@@ -118,9 +125,8 @@ var Keywords = new mongoose.Schema({
 	keyword: String
 });
 
-var Address = new mongoose.Schema({
-	address: String,
-	phone: Number
+var Coordinates = new mongoose.Schema({
+	coordinate: Number
 });
 
 var PostSchema = new mongoose.Schema({
@@ -132,7 +138,10 @@ var PostSchema = new mongoose.Schema({
 	keywords: [ Keywords ],
 	date: Date,
 	postType: {type: String, default: 'restaurante'},
-	url: String
+	address: String,
+	phone: Number,
+	url: String,
+	coordinates: [ Coordinates ]
 });
 
 var PostModel = mongoose.model("Post", PostSchema);
@@ -167,7 +176,8 @@ router.route('/')
 			currentTime = date.getTime();
 
 		var photoPath = 'data/img/' + year + '/' + req.body.idReadable;
-		var keys = keywords2array(req.body.keywords)
+		var keys = liststr2array(req.body.keywords)
+		var coordinates = listnum2array(req.body.coordinates)
 
 		var urls = photoUrl(req.files, photoPath);
 		console.log(urls);
@@ -181,7 +191,10 @@ router.route('/')
 			keywords: arrayOfObjects(keys, 'keyword'),
 			date: currentTime,
 			postType: req.body.postType,
-			url: req.body.url
+			address: req.body.address,
+			phone: req.body.phone,
+			url: req.body.url,
+			coordinates: arrayOfObjects(coordinates, 'coordinate')
 		});
 
 		mkdirp(photoPath, function(err){

@@ -23,7 +23,7 @@ var Router = require('../routes/router');
 $(function() {
 	new PostCollectionView({el: $("#post-container")});
 	$('.slick-carousel').slick({
-		autoplay: true,
+		autoplay: false,
 		dots: true
 	});
 });

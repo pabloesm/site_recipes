@@ -30,12 +30,14 @@ module.exports = Backbone.View.extend({
 
 		var data = new FormData();
 
-		$('#addPost div').children(['textarea']['input']).each(function(i, el) {
+		$('#addPost > div').children('textarea, input, select').each(function(i, el) {
 			if ( $(el).val() != '' ) {
 				if ( el.id === 'photoMain' || el.id === 'photoOthers') {
 					$.each($(el)[0].files, function(file){
 						data.append(el.id, this);
 					});
+				} else if (el.name === 'postType') {
+					data.append(el.name, $(el).val());
 				} else {
 					console.log(el.id);
 					data.append(el.id, $(el).val());
@@ -45,16 +47,18 @@ module.exports = Backbone.View.extend({
 				}
 			}
 
-		$('#addPost div fieldset').children(['textarea']['input']).each(function(i, el) {
+			//Clear input field values
+			//$(el).val('');
+
+		});
+
+		$('#addPost > div > fieldset').children('textarea, input').each(function(i, el) {
 			if ( $(el).val() != '') {
 				console.log(el.id);
 				data.append(el.id, $(el).val());
 			}
 		});
 
-			//Clear input field values
-			//$(el).val('');
-		});
 
 		$.ajax({
 			url: '../posts',
@@ -69,8 +73,7 @@ module.exports = Backbone.View.extend({
 		});
 
 	return false;
-}
-
+	}
 
 });
 

@@ -22,9 +22,9 @@
 			<div>
 				<label for="title">Title: </label><input id="title" type="text" required>
 				<label for="photoMain">Main photo: </label><input id="photoMain" type="file" required>
-				<label for="body">Body: </label><textarea id="body" rows="10" cols="50" required></textarea>
+				<label for="body">Body (we support <a href="https://help.github.com/articles/markdown-basics/" target="_blank">Markdown's Formatting Syntax</a>): </label><textarea id="body" rows="10" cols="50" required></textarea>
 				<label for="photoOthers">Other photos: </label><input id="photoOthers" type="file" multiple>
-				<label for="keywords">Keywords (separated by semicolon): </label><input id="keywords" type="text">
+				<label for="keywords">Keywords (separated by comma): </label><input id="keywords" type="text">
 
 				<label for="postType">Type of post: </label>
 				<select name="postType">
@@ -37,6 +37,7 @@
 					<label for="address">Address: </label> <textarea id="address" rows="1" cols="50"></textarea>
 					<label for="phone">Phone: </label> <input id="phone" type="text">
 					<label for="url">Url: </label> <input id="url" type="url">
+					<label for="coordinates">Coordinates (<a href="https://support.google.com/maps/answer/18539?hl=en" target="_blank">latitude and longitude in decical degrees</a>): </label> <input	id="coordinates" type="text">
 				</fieldset>
 
 				<button id="add">Add</button>
