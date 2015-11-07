@@ -16,7 +16,8 @@ module.exports = Backbone.View.extend({
 
 	events: {
 		'click .post-photomain': 'goToPost',
-		'click .post-title': 'goToPost'
+		'click .post-title': 'goToPost',
+		'click .post-body': 'goToPost'
 	},
 
 	render: function() {

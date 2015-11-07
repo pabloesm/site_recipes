@@ -31,7 +31,11 @@ module.exports = Backbone.View.extend({
 
 		var source =$('#postTemplate').html();
 		var template = Handlebars.compile(source);
-		this.$el.html(template(this.model.attributes));
+		var templateData = this.model.attributes;
+		templateData['hasContactInfo'] = templateData['address'] !== undefined ? true : false;
+		this.$el.html(template(templateData));
+
+		$('footer').show();
 
 		return this;
 	}

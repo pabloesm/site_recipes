@@ -1,4 +1,8 @@
-$minwidth: 700px;
+$minwidth: 1px;
+
+// Color scheme
+$main-color: #e15454;
+$preview-label-font: #FFF;
 
 // General typography
 
@@ -16,15 +20,10 @@ $minwidth: 700px;
   src: local("Open Sans"), local("OpenSans"), url("http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2") format("woff2");
 }
 
-$font-main-carousel: OpenSans, Helvetica, sans-serif;
-$font-sec-carousel: OpenSans, Helvetica, sans-serif;
+$font-main-title: OpenSans, Helvetica, sans-serif;
+$font-sec-title: OpenSansSub, Helvetica, sans-serif;
 
 
-
-html, body {
-    margin: 0;
-    height: 100%;
-}
 
 // ------------------------------
 // Navbar
@@ -36,7 +35,7 @@ html, body {
 	top: 0px;
 	left: 0px;
 	margin: 0px;
-	height: 60px;
+	height: 55px;
 	weight: 690px;
 	position: fixed;
 	width: 100%;
@@ -49,8 +48,16 @@ html, body {
 
 	li {
 		display: inline-block;
-		padding: 10px 5px 5px 5px;
-		margin: 10px 15px 10px 15px;
+		padding-top: 20px;
+
+		a {
+			padding: 20px 5px 18px 5px;
+			margin: 0px 15px 0px 15px;
+		}
+
+		.active {
+			border-bottom: 2px solid #0088dd;
+		}
 	}
 
 	form {
@@ -150,17 +157,25 @@ body {
 
 	.slide-title {
 		display: block;
-		font-family: $font-main-carousel;
+		font-family: $font-main-title;
 		color: #FFF;
 		font-size: 48px;
 		line-height: 68.5667px;
 		text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 0px;
 		text-transform: uppercase;
+
+		@media (max-width: 900px) {
+			font-size: 32px;
+		}
+
+		@media (max-width: 400px) {
+			font-size: 16px;
+		}
 	}
 
 	.slide-subtitle {
 		display: block;
-		font-family: $font-sec-carousel;
+		font-family: $font-sec-title;
 		color: #FFF;
 		font-size: 24px;
 		text-shadow: rgba(0, 0, 0, 0.3) 1px 1px 0px;
@@ -178,16 +193,136 @@ body {
 // ------------------------------
 
 // Layout
-#main {
+#main-content {
 	padding-top: 100px;
 	z-index: 5;
 	min-width: $minwidth;
 }
 
+
+
+// ------------------------------
+// Post-preview
+// ------------------------------
+// Layout
 .one-third.column{
 	margin-left: 1%;
 	margin-right: 1%;
+
+	.post-photomain {
+		// height: 186px;
+		// overflow: hidden;
+		position: relative;
+		cursor: pointer;
+	}
+
+	.post-title, .post-body {
+		cursor: pointer;
+	}
+
+	.label-main {
+		position: absolute;
+		bottom: 0px;
+		margin-bottom: 0.53em;
+		padding: 0% 4% 0%;
+	}
 }
+
+// Typo
+.one-third.column{
+	.label-main {
+		font-family: $font-sec-title;
+		font-size: 11px;
+		text-transform: uppercase;
+		line-height: 27px;
+		background-color: $main-color;
+		color: $preview-label-font;
+	}
+
+	.post-title {
+		font-family: $font-main-title;
+		font-size: 18px;
+		line-height: 28.8px;
+		color: #565656;
+		text-transform: uppercase;
+	}
+
+	.post-body > p {
+		font-family: $font-sec-title;
+		font-size: 13px;
+		line-height: 24.7px;
+		color: #565656;
+	}
+}
+
+
+// ------------------------------
+// Posts
+// ------------------------------
+// Layout
+#post-container {
+	.eight {
+		img {
+			margin-bottom: 10px;
+			margin-top: 8px;
+		}
+	}
+}
+
+// Typo
+#post-container {
+	.eight {
+		h3 {
+			font-family: $font-main-title;
+			font-size: 21px;
+			line-height: 33px;
+			color: #565656;
+			text-transform: uppercase;
+		}
+
+		p, li, ul {
+			font-family: $font-sec-title;
+			font-size: 16px;
+			line-height: 28.4px;
+			color: #565656;
+		}
+
+		h5 {
+			font-family: $font-main-title;
+			font-size: 14px;
+			line-height: 22.4px;
+			color: #565656;
+			text-transform: uppercase;
+		}
+	}
+
+	.contact {
+		p {
+			font-size: 14px;
+			margin-bottom: 0px;
+		}
+
+		margin-bottom: 25px;
+	}
+
+	.keywords {
+		p {
+			display: inline-block;
+			background-color: #F2F2EB;
+			color: #898989;
+			font-size: 14px;
+			padding: 3px 8px 3px;
+			margin-right: 10px;
+		}
+
+		#category {
+			background-color: #FFF;
+			padding-left: 0px;
+			color: #565656;
+		}
+	}
+}
+
 
 
 // ------------------------------
@@ -199,6 +334,7 @@ footer {
 	background-color: rgb(60, 60, 60);
   overflow: hidden;
   height: 80px;
+  margin-top: 50px;
 }
 
 // Typo

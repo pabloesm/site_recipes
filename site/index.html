@@ -23,12 +23,11 @@
 			<div class="container">
 
 				<ul>
-					<li><a href="#main">Home</a></li>
-					<li><a href="#">Restaurantes</a></li>
-					<li><a href="#">Recetas</a></li>
-					<li><a href="#">Wishlist</a></li>
-					<li><a href="#">Contacto</a></li>
-					<li><a href="#">Nosotros</a></li>
+					<li id="item-home"><a href="#main">Home</a></li>
+					<li id="item-restaurantes"><a href="#posts/restaurant">Restaurantes</a></li>
+					<li id="item-recetas"><a href="#">Recetas</a></li>
+					<li id="item-contacto"><a href="#">Contacto</a></li>
+					<li id="item-nosotros"><a href="#">Nosotros</a></li>
 				</ul>
 
 		    <form class="navbar-form" role="search">
@@ -47,8 +46,8 @@
 		<div id="carousel" class="content">
 			<div class="slick-carousel">
 			  <div class="centered slide-1">
-			  	<span class="slide-title">Vasitos tres chocolates</span>
-			  	<span class="slide-subtitle">More info</span>
+			  	<span class="slide-title">Vasitos de turrón y chocolate</span>
+			  	<span class="slide-subtitle">Un postre sencillo y elegante</span>
 			  	<button>Ver receta</button>
 			  </div>
 			  <div>your content 1</div>
@@ -56,7 +55,7 @@
 			</div>
 		</div>
 
-		<div id="main" class="container">
+		<div id="main-content" class="container">
 			<div class="row">
 				<div id="post-container"></div>
 			</div>
@@ -71,19 +70,37 @@
 
 	<!-- Handlebars templates -->
 	<script id="postTemplate" type="text/x-handlebars-template">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="eight columns offset-by-two">
+
 			<h3 class="post-title">{{title}}</h3>
 			<div class="post-photomain">
-				<img src={{photoMain}} width="628">
+				<img class="u-max-full-width" src={{photoMain}}>
 			</div>
 
 			<p>{{{body}}}</p>
 
 			{{#each photoOthers}}
 				<div class="post-photoothers">
-					<img src={{photo}} width="628">
+					<img class="u-max-full-width" src={{photo}}>
 				</div>
 			{{/each}}
+
+      {{#if hasContactInfo}}
+				<h5>{{title}}</h5>
+				<div class="contact">
+					<p>{{address}}</p>
+					<p>{{phone}}</p>
+					<a href="{{url}}" target="_blanket">{{url}}</a>
+				</div>
+			{{/if}}
+
+			<div class="keywords">
+				<p id="category">Categorías:</p>
+				{{#each keywords}}
+					<p>{{keyword}}</p>
+				{{/each}}
+			</div>
+
 		</div>
 	</script>
 
@@ -91,10 +108,10 @@
 		<div class="one-third column">
 			<div class="post-photomain" >
 				<img class="u-max-full-width" src={{photoMain}}>
-				<p class="labels">Etiqueta</p>
+				<p class="label-main">{{keywords.[0].keyword}}</p>
 			</div>
 			<h4 class="post-title">{{title}}</h4>
-			<p>{{{body}}}</p>
+			<div class="post-body">{{{body}}}</div>
 		</div>
 	</script>
 

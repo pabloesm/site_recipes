@@ -203,7 +203,9 @@ router.route('/')
 			} else {
 				console.log('Directory ' + req.body.idReadable + ' created.');
 				relocate(req.files['photoMain'], photoPath);
-				relocate(req.files['photoOthers'], photoPath);
+				if (req.files['photoOthers'] !== undefined) {
+					relocate(req.files['photoOthers'], photoPath);
+				}
 			}
 		});
 
@@ -235,13 +237,30 @@ router.route('/edit')
 	});
 
 
+router.route('/category/:id')
+
+	.get(function(req, res){
+		// Find by keywords (a.k.a. tags, categories)
+		var category = req.params.id;
+		console.log('Reached category ' + category);
+		return PostModel.find({"postType": category}, function(err, posts){
+			if(!err) {
+				posts = bodyMarked(posts);
+				return res.send(posts);
+			} else {
+				return console.log(err);
+			}
+		});
+	});
+
+
 router.route('/:id')
 
 	.get(function(req, res){
 		/* Allows searching by different types of :id
 		typeOfID() parses the :id
 		*/
-		if (typeOfID(req.params.id) == '_id') {
+		if (typeOfID(req.params.id) === '_id') {
 			return PostModel.findById(req.params.id, function(err, post){
 				if(!err){
 					post = bodyMarked(post)
@@ -262,6 +281,7 @@ router.route('/:id')
 			});
 		}
 	});
+
 
 
 module.exports = router;

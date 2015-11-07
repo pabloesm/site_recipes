@@ -13,13 +13,17 @@ module.exports = Backbone.Router.extend({
 
 		'about': 'showAbout',
 
-		'post/:title': 'showPost'
+		'post/:title': 'showPost',
+
+		'posts/:category': 'showCategory'
 	},
 
 	init: function(){
 		$('#post-container').html('');
 		new PostCollectionView({el: $("#post-container")});
 		console.log('init');
+
+		$('#carousel').show();
 	},
 
 	showAbout: function(){
@@ -27,15 +31,18 @@ module.exports = Backbone.Router.extend({
 	},
 
 	showPost: function(postTitle){
-		$(function(){
-			// Waiting to load all thing, then clean and show post. Dirty.
-			var postView = new PostCollectionOne({
+		$('#post-container').html('');
+		$('footer').hide();
+		$('#carousel').hide();
+
+		var postView = new PostCollectionOne({
 				idReadable: postTitle
 			});
 
-			$('#carousel').hide();
-		});
+	},
 
+	showCategory: function(category){
+		$('#post-container').html('');
 	}
 
 });
