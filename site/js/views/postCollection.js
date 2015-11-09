@@ -12,11 +12,11 @@ var PostPreview = require('../views/postPreview'); // The path is redundant, we 
 
 module.exports = Backbone.View.extend({
 
-	initialize: function(options) {
-		this.options = options || {};
+	initialize: function() {
 		this.collection = new PostCollection();
 		this.collection.fetch({reset: true});
-		this.render();
+
+		//	this.render();
 
 		this.listenTo(this.collection, 'reset', this.render);
 	},

@@ -13,6 +13,10 @@ module.exports = Backbone.View.extend({
 		'click a': 'toggleActive'
 	},
 
+	initialize: function() {
+		$('#item-home > a').addClass('active');
+	},
+
 	toggleActive: function(e) {
 		$('.active').toggleClass('active');
 		$(e.target).toggleClass('active');

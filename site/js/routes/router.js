@@ -24,6 +24,8 @@ module.exports = Backbone.Router.extend({
 		console.log('init');
 
 		$('#carousel').show();
+
+		window.scrollTo(0, 0);
 	},
 
 	showAbout: function(){
@@ -39,10 +41,17 @@ module.exports = Backbone.Router.extend({
 				idReadable: postTitle
 			});
 
+		console.log('test point');
+
 	},
 
 	showCategory: function(category){
-		$('#post-container').html('');
+		$('#carousel').hide();
+
+		new PostCollectionView({
+			el: $("#post-container"),
+			initType: 'category',
+			category: category});
 	}
 
 });

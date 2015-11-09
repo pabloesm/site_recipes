@@ -9,7 +9,7 @@
   font-weight: 400;
   src: local("Open Sans"), local("OpenSans"), url("http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2") format("woff2"); }
 .navbar {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.41);
   top: 0px;
   left: 0px;
   margin: 0px;
@@ -26,9 +26,10 @@
     padding-top: 20px; }
     .navbar li a {
       padding: 20px 5px 18px 5px;
-      margin: 0px 15px 0px 15px; }
+      margin: 0px 15px 0px 15px;
+      color: #777777; }
     .navbar li .active {
-      border-bottom: 2px solid #0088dd; }
+      border-bottom: 2px solid #59BEBE; }
   .navbar form {
     float: right;
     margin-top: 14px; }
@@ -37,20 +38,24 @@
       font-size: 12px;
       padding: 0px 10px 0px 10px;
       height: 30px; }
+    .navbar form input:focus {
+      border-color: #59BEBE; }
 
 .navbar li {
   text-transform: uppercase;
   font-size: 12px; }
   .navbar li a {
     text-decoration: none; }
+  .navbar li .active {
+    color: #59BEBE; }
 
 body {
   background-color: white; }
 
 #header {
-  width: 210px;
+  width: 350px;
   margin: auto;
-  margin-top: 100px; }
+  margin-top: 75px; }
 
 .content {
   margin: auto;
@@ -110,6 +115,13 @@ body {
     font-size: 24px;
     text-shadow: rgba(0, 0, 0, 0.3) 1px 1px 0px;
     line-height: 34.2833px; }
+  .centered button {
+    color: white;
+    background-color: #59BEBE;
+    border-color: #59BEBE; }
+  .centered button:hover {
+    background-color: #438987;
+    border-color: #438987; }
 
 #main-content {
   padding-top: 100px;
@@ -124,18 +136,22 @@ body {
     cursor: pointer; }
   .one-third.column .post-title, .one-third.column .post-body {
     cursor: pointer; }
+  .one-third.column .post-title {
+    margin-bottom: 10px; }
   .one-third.column .label-main {
     position: absolute;
     bottom: 0px;
     margin-bottom: 0.53em;
     padding: 0% 4% 0%; }
+  .one-third.column .post-body {
+    margin-bottom: 50px; }
 
 .one-third.column .label-main {
   font-family: OpenSansSub, Helvetica, sans-serif;
   font-size: 11px;
   text-transform: uppercase;
   line-height: 27px;
-  background-color: #e15454;
+  background-color: #59BEBE;
   color: #FFF; }
 .one-third.column .post-title {
   font-family: OpenSans, Helvetica, sans-serif;

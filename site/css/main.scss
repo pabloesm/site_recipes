@@ -1,7 +1,8 @@
 $minwidth: 1px;
 
 // Color scheme
-$main-color: #e15454;
+$main-color: #e15454; // red
+$main-color: #59BEBE; // blue
 $preview-label-font: #FFF;
 
 // General typography
@@ -31,7 +32,7 @@ $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 
 // Layout
 .navbar {
-	border-bottom: 1px solid #dddddd;
+	border-bottom: 1px solid rgba(221, 221, 221, 0.41);
 	top: 0px;
 	left: 0px;
 	margin: 0px;
@@ -53,10 +54,11 @@ $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 		a {
 			padding: 20px 5px 18px 5px;
 			margin: 0px 15px 0px 15px;
+			color: rgb(119, 119, 119);
 		}
 
 		.active {
-			border-bottom: 2px solid #0088dd;
+			border-bottom: 2px solid $main-color;
 		}
 	}
 
@@ -69,6 +71,10 @@ $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 			font-size: 12px;
 			padding: 0px 10px 0px 10px;
 			height: 30px;
+		}
+
+		input:focus {
+			border-color: $main-color;
 		}
 	}
 
@@ -84,7 +90,12 @@ $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 		a {
 			text-decoration: none;
 		}
+
+		.active {
+			color: $main-color;
+		}
 	}
+
 }
 
 
@@ -98,9 +109,9 @@ body {
 // Logo
 // ------------------------------
 #header {
-	width: 210px;
+	width: 350px;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 75px;
 }
 
 
@@ -181,6 +192,17 @@ body {
 		text-shadow: rgba(0, 0, 0, 0.3) 1px 1px 0px;
 		line-height: 34.2833px;
 	}
+
+	button {
+		color: white;
+		background-color: $main-color;
+		border-color: $main-color;
+	}
+
+	button:hover {
+		background-color: #438987;
+		border-color: #438987;
+	}
 }
 
 
@@ -220,11 +242,19 @@ body {
 		cursor: pointer;
 	}
 
+	.post-title {
+		margin-bottom: 10px;
+	}
+
 	.label-main {
 		position: absolute;
 		bottom: 0px;
 		margin-bottom: 0.53em;
 		padding: 0% 4% 0%;
+	}
+
+	.post-body {
+		margin-bottom: 50px;
 	}
 }
 
