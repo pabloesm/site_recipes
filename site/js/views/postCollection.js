@@ -7,22 +7,23 @@ var Backbone = require('backbone'),
 
 Backbone.$ = $;
 
-var PostCollection = require('../collections/postCollection');
 var PostPreview = require('../views/postPreview'); // The path is redundant, we are in /views
 
-module.exports = Backbone.View.extend({
+
+var postCollection;
+
+var PostCollection = Backbone.View.extend({
 
 	initialize: function() {
-		this.collection = new PostCollection();
 		this.collection.fetch({reset: true});
 
-		//	this.render();
-
+		//this.render();
 		this.listenTo(this.collection, 'reset', this.render);
 	},
 
 	render: function(){
-		$('#post-container').html('');
+		$('#post-container').empty();
+		console.log('Collection reset fires render view.')
 		this.collection.each(function(item){
 			this.renderPostPreview(item);
 		}, this);
@@ -39,6 +40,12 @@ module.exports = Backbone.View.extend({
 	}
 
 });
+
+// Singleton pattern
+module.exports = function(options) {
+	if (!postCollection) postCollection = new PostCollection(options);
+	return postCollection;
+};
 
 
 

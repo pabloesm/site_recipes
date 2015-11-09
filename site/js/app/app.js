@@ -17,13 +17,19 @@ Backbone.$ = $;
 // });
 
 
+var PostCollection = require('../collections/postCollection');
 var PostCollectionView = require('../views/postCollection');
 var Router = require('../routes/router');
 
 var MenuView = require('../views/menuView');
 
 $(function() {
-	new PostCollectionView({el: $('#post-container')});
+
+	var postCollection = PostCollection();
+	new PostCollectionView({
+		collection: postCollection,
+		el: $('#post-container')
+	});
 
 	new MenuView({el: $('.navbar')});
 

@@ -4,7 +4,8 @@ var Backbone = require('backbone'),
 	$ = require('jquery'),
 	_ = require('underscore');
 
-var PostCollectionView = require('../views/postCollection'),
+var PostCollection = require('../collections/postCollection'),
+	PostCollectionView = require('../views/postCollection'),
 	PostCollectionOne = require('../views/postCollectionOne');
 
 module.exports = Backbone.Router.extend({
@@ -19,12 +20,12 @@ module.exports = Backbone.Router.extend({
 	},
 
 	init: function(){
-		$('#post-container').html('');
-		new PostCollectionView({el: $("#post-container")});
+		$('#post-container').empty();
+		var postCollection = new PostCollection();
+		postCollection.url = 'api/posts';
+		postCollection.fetch({reset: true});
 		console.log('init');
-
 		$('#carousel').show();
-
 		window.scrollTo(0, 0);
 	},
 
@@ -48,10 +49,17 @@ module.exports = Backbone.Router.extend({
 	showCategory: function(category){
 		$('#carousel').hide();
 
-		new PostCollectionView({
-			el: $("#post-container"),
-			initType: 'category',
-			category: category});
+		var url = 'api/posts/category/' + category;
+		var postCollection = new PostCollection();
+		postCollection.url = url;
+		postCollection.fetch({reset: true});
+		window.scrollTo(0, 0);
+
+
+		// new PostCollectionView({
+		// 	el: $("#post-container"),
+		// 	initType: 'category',
+		// 	category: category});
 	}
 
 });
