@@ -25,7 +25,6 @@ $font-main-title: OpenSans, Helvetica, sans-serif;
 $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 
 
-
 // ------------------------------
 // Navbar
 // ------------------------------
@@ -37,7 +36,7 @@ $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 	left: 0px;
 	margin: 0px;
 	height: 55px;
-	weight: 690px;
+	min-width: 850px; // Remove for responsive
 	position: fixed;
 	width: 100%;
 	z-index: 10;
@@ -123,12 +122,11 @@ body {
 	margin: auto;
 	margin-top: 30px;
 	width: 100%;
+	min-width: 600px; // Remove for responsive
 }
 
 .slick-carousel div{
 	height: 420px;
-	background-color: steelblue;
-	min-width: $minwidth;
 }
 
 .slide-title {
@@ -155,6 +153,13 @@ body {
 
 .slide-1 {
 	background-image: url("../img/carousel_tresChocolates.jpg");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 100%;
+}
+
+.slide-2 {
+	background-image: url("../img/carousel_gadhus.jpg");
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: 100%;

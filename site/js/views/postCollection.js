@@ -15,9 +15,9 @@ var postCollection;
 var PostCollection = Backbone.View.extend({
 
 	initialize: function() {
-		this.collection.fetch({reset: true});
-
+		//this.collection.fetch({reset: true});
 		//this.render();
+
 		this.listenTo(this.collection, 'reset', this.render);
 	},
 

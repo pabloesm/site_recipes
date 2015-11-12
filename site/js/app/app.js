@@ -34,7 +34,7 @@ $(function() {
 	new MenuView({el: $('.navbar')});
 
 	$('.slick-carousel').slick({
-		autoplay: false,
+		autoplay: true,
 		dots: true
 	});
 

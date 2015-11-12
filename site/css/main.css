@@ -14,7 +14,7 @@
   left: 0px;
   margin: 0px;
   height: 55px;
-  weight: 690px;
+  min-width: 850px;
   position: fixed;
   width: 100%;
   z-index: 10;
@@ -60,12 +60,11 @@ body {
 .content {
   margin: auto;
   margin-top: 30px;
-  width: 100%; }
+  width: 100%;
+  min-width: 600px; }
 
 .slick-carousel div {
-  height: 420px;
-  background-color: steelblue;
-  min-width: 1px; }
+  height: 420px; }
 
 .slide-title {
   margin-top: 120px; }
@@ -86,6 +85,12 @@ body {
 
 .slide-1 {
   background-image: url("../img/carousel_tresChocolates.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100%; }
+
+.slide-2 {
+  background-image: url("../img/carousel_gadhus.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 100%; }

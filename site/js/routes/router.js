@@ -6,10 +6,12 @@ var Backbone = require('backbone'),
 
 var PostCollection = require('../collections/postCollection'),
 	PostCollectionView = require('../views/postCollection'),
-	PostCollectionOne = require('../views/postCollectionOne');
+	PostView = require('../views/post');
 
 module.exports = Backbone.Router.extend({
 	routes:  {
+		'': 'init',
+
 		'main': 'init',
 
 		'about': 'showAbout',
@@ -34,16 +36,11 @@ module.exports = Backbone.Router.extend({
 	},
 
 	showPost: function(postTitle){
-		$('#post-container').html('');
 		$('footer').hide();
 		$('#carousel').hide();
 
-		var postView = new PostCollectionOne({
-				idReadable: postTitle
-			});
-
-		console.log('test point');
-
+		var url = 'api/posts/' + postTitle;
+		var postView = new PostView(url);
 	},
 
 	showCategory: function(category){

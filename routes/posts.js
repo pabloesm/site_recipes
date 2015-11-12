@@ -61,7 +61,7 @@ var photoUrl = function(files, path){
 };
 
 var typeOfID = function(id) { // MAKE THIS MORE ROBUST!
-	if (id.length < 17) {
+	if (id.length < 17 || id.indexOf('-') >= 0) {
 		return 'idReadable';
 	} else {
 		return '_id';
