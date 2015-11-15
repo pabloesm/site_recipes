@@ -1,0 +1,142 @@
+$main-color: #59BEBE; // blue
+$second-color: #FFD277; // ocre
+$third-color: #FF7777; // red
+
+@font-face {
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url("http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzBampu5_7CjHW5spxoeN3Vs.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "OpenSansSub";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("OpenSans"), url("http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'MerriweatherLight';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Merriweather Light Italic'), local('Merriweather-LightItalic'), url(https://fonts.gstatic.com/s/merriweather/v8/EYh7Vl4ywhowqULgRdYwIB0ue0Sk5cwvYx5tGiUAApw.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'MerriweatherHeavy';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(https://fonts.gstatic.com/s/merriweather/v8/ZvcMqxEwPfh2qDWBPxn6nshHwsiXhsDb0smKjAA7Bek.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lora Italic'), local('Lora-Italic'), url(https://fonts.gstatic.com/s/lora/v9/_MYF_5lLoOGnzKiQsUc_vevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v6/zhcz-_WihjSQC0oHJ9TCYAzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Yanone';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Yanone Kaffeesatz ExtraLight'), local('YanoneKaffeesatz-ExtraLight'), url(https://fonts.gstatic.com/s/yanonekaffeesatz/v7/We_iSDqttE3etzfdfhuPRYuLSQHnHW2U4NkxJ--PfJX3rGVtsTkPsbDajuO5ueQw.woff2) format('woff2');
+}
+
+$font-1: MerriweatherHeavy, Helvetica, sans-serif;
+$font-2: MerriweatherLight, Helvetica, sans-serif;
+
+$font-3: Lora, Helvetica, sans-serif;
+$font-4: Montserrat, Helvetica, sans-serif;
+
+$font-5: Yanone, Helvetica, sans-serif;
+
+// Layout
+.to-remove {
+	width: 100%;
+	height: 450px;
+	margin-top: 70px;
+	text-align: center;
+  background-color: $third-color;
+  p {
+    margin: 0px;
+  }
+
+  #p1 {
+   padding-top: 90px;
+  }
+}
+
+.blue {
+  background-color: $main-color;
+}
+
+.red {
+  background-color: $third-color;
+  margin-top: 0px;
+}
+
+.yellow {
+  background-color: $second-color;
+  margin-top: 0px;
+}
+
+
+// Typo
+.to-remove {
+  #p1 {
+    font-family: $font-2;
+    font-size: 52px;
+    color: white;
+  }
+
+  #p2 {
+    font-family: $font-1;
+    text-transform: uppercase;
+    font-size: 112px;
+    line-height: 130px;
+    color: white;
+  }
+
+  #p3 {
+    padding-top: 90px;
+    line-height: 60px;
+    font-family: $font-3;
+    font-size: 42px;
+    color: white;
+  }
+
+  #p4 {
+    font-family: $font-4;
+    font-size: 92px;
+    line-height: 85px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 0.2em;
+  }
+
+  #p5 {
+    padding-top: 20px;
+    font-family: $font-4;
+    font-size: 42px;
+    text-transform: uppercase;
+    color: white;
+  }
+
+    #p6 {
+    padding-top: 120px;
+    font-family: $font-5;
+    font-size: 99px;
+    text-transform: uppercase;
+    color: white;
+  }
+
+}

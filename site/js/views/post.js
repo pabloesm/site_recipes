@@ -30,6 +30,7 @@ module.exports = Backbone.View.extend({
 		this.$el.html(template(this.model.attributes));
 
 		window.scrollTo(0, 0);
+		$('footer').show();
 
 		return this;
 	}

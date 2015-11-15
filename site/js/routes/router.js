@@ -22,6 +22,7 @@ module.exports = Backbone.Router.extend({
 	},
 
 	init: function(){
+		$('.to-remove').remove();
 		$('#post-container').empty();
 		var postCollection = new PostCollection();
 		postCollection.url = 'api/posts';
@@ -32,10 +33,18 @@ module.exports = Backbone.Router.extend({
 	},
 
 	showAbout: function(){
+		var content = '<div class="to-remove blue"><div class="first"><p id="p1">Work in progress</p><p id="p2">UPS!</p></div></div>';
+
 		console.log('Me!');
+		$('#carousel').hide();
+		$('#post-container').empty()
+
+		$('#carousel').after(content);
+		window.scrollTo(0, 0);
 	},
 
 	showPost: function(postTitle){
+		$('.to-remove').remove();
 		$('footer').hide();
 		$('#carousel').hide();
 
@@ -44,6 +53,7 @@ module.exports = Backbone.Router.extend({
 	},
 
 	showCategory: function(category){
+		$('.to-remove').remove();
 		$('#carousel').hide();
 
 		var url = 'api/posts/category/' + category;

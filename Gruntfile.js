@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
-			files: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js', 'site/css/main.scss'],
+			files: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js', 'site/css/*.scss'],
 			tasks: ['eslint', 'browserify', 'sass']
 		},
 
