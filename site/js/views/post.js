@@ -24,10 +24,11 @@ module.exports = Backbone.View.extend({
 		// this.el is what we defined in tagName. use $el to get access
 		// to the jQuery html() function
 
-		//this.$el.html(this.template(this.model.attributes));
-		var source = $('#postTemplate').html();
+		var source =$('#postTemplate').html();
 		var template = Handlebars.compile(source);
-		this.$el.html(template(this.model.attributes));
+		var templateData = this.model.attributes;
+		templateData['hasContactInfo'] = templateData['address'] !== undefined ? true : false;
+		this.$el.html(template(templateData));
 
 		window.scrollTo(0, 0);
 		$('footer').show();
