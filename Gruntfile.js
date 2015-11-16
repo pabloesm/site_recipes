@@ -30,24 +30,23 @@ module.exports = function(grunt) {
 			tasks: ['eslint', 'browserify', 'sass']
 		},
 
-		// uglify: {
-		// 	my_target: {
-		// 		files: {
-		// 			'public/js/bundle.js': ['public/js/bundle.js']
-		// 		}
-		// 	}
-		// }
+		uglify: {
+			my_target: {
+				files: {
+					'site/app.bundle.js': ['site/app.bundle.js']
+				}
+			}
+		}
 
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	// grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-eslint');
 
 	grunt.registerTask('sasscomp', ['sass']);
   grunt.registerTask('default', ['eslint', 'browserify']);
-  grunt.registerTask('bro', ['browserify']);
-  // grunt.registerTask('deploy', 'linter + browserify + uglify', ['eslint', 'browserify', 'uglify']);
+  grunt.registerTask('deploy', 'linter + browserify + uglify', ['eslint', 'browserify', 'uglify']);
 };
