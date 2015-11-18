@@ -62,11 +62,16 @@ module.exports = Backbone.Router.extend({
 		postCollection.fetch({reset: true});
 		window.scrollTo(0, 0);
 
+	},
 
-		// new PostCollectionView({
-		// 	el: $("#post-container"),
-		// 	initType: 'category',
-		// 	category: category});
+	hideElements: function(){
+		$('.to-remove').remove();
+		$('footer').hide();
+
+	},
+
+	showElements: function(){
+
 	}
 
 });

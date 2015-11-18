@@ -30,9 +30,6 @@ module.exports = Backbone.View.extend({
 		templateData['hasContactInfo'] = templateData['address'] !== undefined ? true : false;
 		this.$el.html(template(templateData));
 
-		window.scrollTo(0, 0);
-		$('footer').show();
-
 		return this;
 	}
 });

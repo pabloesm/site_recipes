@@ -9,3 +9,8 @@
 node_modules
 
 data
+
+.sass-cache
+
+recipes.sublime-project
+recipes.sublime-workspace

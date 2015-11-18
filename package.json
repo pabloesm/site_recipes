@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "initdb": "mongod -dbpath ~/work/mongodb/data/db/",
-    "initdb_pi": "mongod -dbpath ~/pablo/mongodb/data/db/"
+    "initdb_pi": "mongod --journal -dbpath ~/pablo/mongodb/data/db/"
   },
   "repository": {
     "type": "git",
