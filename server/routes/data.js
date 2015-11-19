@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var	path = require('path'); // Path utilities
-var fs = require('fs'); // Fle system
+var path = require('path'); // Path utilities
+var appRootDir = require('app-root-dir').get(); // Get root directory
 
 // To be mounted on '/api/data'
 router.route('/img/:year/:postTitle/:photoName')
-	.get(function(req, res) {
-  var year = req.params.year;
-  var postTitle = req.params.postTitle;
+.get(function(req, res) {
+ var year = req.params.year;
+ var postTitle = req.params.postTitle;
   var fileName = req.params.photoName;
 
   var options = {
-    root: path.normalize(__dirname + '/../' + path.join('data', 'img', year, postTitle)),
+    root: path.normalize(appRootDir + '/' + path.join('data', 'img', year, postTitle)),
   };
 
   res.sendFile(fileName, options, function(err) {
@@ -22,7 +22,6 @@ router.route('/img/:year/:postTitle/:photoName')
       res.status(err.status).end();
     }
   });
-
-	});
+});
 
 module.exports = router;
