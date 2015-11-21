@@ -25,12 +25,6 @@ router.route('/')
   .get(posts.findAll)
   .post(upload.fields(fields), posts.add);
 
-router.route('/edit')
-  .get(posts.sendEditHtml);
-
-router.route('/category/:id')
-  .get(posts.findByCategory);
-
 router.route('/:id')
   .get(posts.findById);
 

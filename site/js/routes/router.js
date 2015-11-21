@@ -32,31 +32,32 @@ module.exports = Backbone.Router.extend({
 		window.scrollTo(0, 0);
 	},
 
-	showAbout: function(){
+	showAbout: function() {
 		var content = '<div class="to-remove blue"><div class="first"><p id="p1">Work in progress</p><p id="p2">UPS!</p></div></div>';
 
 		console.log('Me!');
 		$('#carousel').hide();
-		$('#post-container').empty()
+		$('#post-container').empty();
 
 		$('#carousel').after(content);
 		window.scrollTo(0, 0);
 	},
 
-	showPost: function(postTitle){
-		$('.to-remove').remove();
-		$('footer').hide();
+	showPost: function(postTitle) {
+		this.hideElements();
 		$('#carousel').hide();
 
 		var url = 'api/posts/' + postTitle;
 		var postView = new PostView(url);
+
+		this.showElements();
 	},
 
-	showCategory: function(category){
+	showCategory: function(category) {
 		$('.to-remove').remove();
 		$('#carousel').hide();
 
-		var url = 'api/posts/category/' + category;
+		var url = 'api/category/' + category;
 		var postCollection = new PostCollection();
 		postCollection.url = url;
 		postCollection.fetch({reset: true});
@@ -64,15 +65,15 @@ module.exports = Backbone.Router.extend({
 
 	},
 
-	hideElements: function(){
+	hideElements: function() {
 		$('.to-remove').remove();
 		$('footer').hide();
 
 	},
 
-	showElements: function(){
-
-	}
-
+	showElements: function() {
+		$('footer').show();
+		window.scrollTo(0, 0);
+	},
 });
 

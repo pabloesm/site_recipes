@@ -13,12 +13,16 @@ app.use('/', parseUrlencoded);
 var connectDB = require('./server/models/connectDB');
 connectDB();
 
-// Routes
-var postsRoute = require('./server/routes/posts');
-app.use('/api/posts', postsRoute);
+// anything beginning with "/api" will go into this
+var api = require('./server/routes');
+app.use('/api', api);
 
-var dataRoute = require('./server/routes/data');
-app.use('/api/data', dataRoute);
+// // Routes
+// var postsRoute = require('./server/routes/posts');
+// app.use('/api/posts', postsRoute);
+
+// var dataRoute = require('./server/routes/data');
+// app.use('/api/data', dataRoute);
 
 app.listen(options.port, function() {
 	console.log('Server listening on ' + options.port);
