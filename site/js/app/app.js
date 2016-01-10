@@ -26,7 +26,7 @@ var MenuView = require('../views/menuView');
 $(function() {
 
 	var postCollection = PostCollection();
-	new PostCollectionView({
+	PostCollectionView({
 		collection: postCollection,
 		el: $('#post-container')
 	});

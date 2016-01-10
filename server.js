@@ -9,6 +9,7 @@ var parseUrlencoded = bodyParser.urlencoded({ extended: true });
 
 app.use('/', express.static('site'));
 app.use('/', parseUrlencoded);
+app.use('/', bodyParser.json()); // for parsing application/json
 
 var connectDB = require('./server/models/connectDB');
 connectDB();

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Backbone.js - Recipes</title>
+
+	<!-- Framework -->
+	<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../../css/skeleton.css">
+
+	<link rel="stylesheet" type="text/css" href="../../css/edit.css">
+</head>
+<body>
+
+	<h1>Admin</h1>
+	<div id="main" class="container">
+		<ul>
+			<li id="addPost">Add post</li>
+			<li id="editPost">Edit post</li>
+			<li id="removePost">Remove post</li>
+		</ul>
+		<div id="content"></div>
+	</div>
+
+
+	<!-- Handlebars templates -->
+	<script id="addPostTemplate" type="text/x-handlebars-template">
+	<div id="newPost">
+		<h4>New post</h4>
+		<form id="addForm" action="?">
+			<div>
+				<label for="title">Title: </label><input id="title" type="text" required>
+				<label for="photoMain">Main photo: </label><input id="photoMain" type="file" required>
+				<label for="body">Body (we support <a href="https://help.github.com/articles/markdown-basics/" target="_blank">Markdown Formatting Syntax</a>): </label><textarea id="body" rows="10" cols="50" required></textarea>
+				<label for="photoOthers">Other photos: </label><input id="photoOthers" type="file" multiple>
+				<label for="keywords">Keywords (separated by comma): </label><input id="keywords" type="text">
+
+				<label for="postType">Type of post: </label>
+				<select name="postType" id="postType">
+					<option value="restaurant">Restaurant</option>
+					<option value="recipe">Recipe</option>
+				</select>
+
+				<fieldset>
+					<legend>Contact info</legend>
+					<label for="address">Address: </label> <textarea id="address" rows="1" cols="50"></textarea>
+					<label for="phone">Phone: </label> <input id="phone" type="text">
+					<label for="url">Url: </label> <input id="url" type="url">
+					<label for="coordinates">Coordinates (<a href="https://support.google.com/maps/answer/18539?hl=en" target="_blank">latitude and longitude in decical degrees</a>): </label> <input	id="coordinates" type="text">
+				</fieldset>
+
+				<button id="add">Add</button>
+			</div>
+		</form>
+	</div>
+	</script>
+
+
+	<script id="updatePostTemplate" type="text/x-handlebars-template">
+	<div id="updatePost">
+		<h4>Update post</h4>
+		<form id="updateForm" action="?">
+			<div>
+				<label for="title">Title: </label><input id="title" type="text" required>
+				<label for="body">Body (we support <a href="https://help.github.com/articles/markdown-basics/" target="_blank">Markdown Formatting Syntax</a>): </label><textarea id="body" rows="10" cols="50" required></textarea>
+				<label for="keywords">Keywords (separated by comma): </label><input id="keywords" type="text">
+
+				<label for="postType">Type of post: </label>
+				<select name="postType" id="postType">
+					<option value="restaurant">Restaurant</option>
+					<option value="recipe">Recipe</option>
+				</select>
+
+				<fieldset>
+					<legend>Contact info</legend>
+					<label for="address">Address: </label> <textarea id="address" rows="1" cols="50"></textarea>
+					<label for="phone">Phone: </label> <input id="phone" type="text">
+					<label for="url">Url: </label> <input id="url" type="url">
+					<label for="coordinates">Coordinates (<a href="https://support.google.com/maps/answer/18539?hl=en" target="_blank">latitude and longitude in decical degrees</a>): </label> <input	id="coordinates" type="text">
+				</fieldset>
+
+				<button id="update">Update</button>
+			</div>
+		</form>
+	</div>
+	</script>
+
+
+	<script id="editPostSelect" type="text/x-handlebars-template">
+	<div>
+		<select name="postTitle" class="postSelector">
+			<option value="defaultValue">Choose post...</option>
+			{{#each arr}}
+			<option value="{{this.idReadable}}">{{this.title}}</option>
+			{{/each}}
+		</select>
+	</div>
+	</script>
+
+	<script src="../../admin.bundle.js"></script>
+
+</body>
+</html>

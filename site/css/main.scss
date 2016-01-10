@@ -28,6 +28,18 @@ $font-main-title: OpenSans, Helvetica, sans-serif;
 $font-sec-title: OpenSansSub, Helvetica, sans-serif;
 
 
+/***** Sticky footer styles Bootstrap solution *****/
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 80px;
+}
+/*********/
+
+
 // ------------------------------
 // Navbar
 // ------------------------------
@@ -370,9 +382,13 @@ body {
 // Layout
 footer {
 	background-color: rgb(60, 60, 60);
-  overflow: hidden;
   height: 80px;
   margin-top: 50px;
+
+  /***** Sticky footer styles Bootstrap solution *****/
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 // Typo

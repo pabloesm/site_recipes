@@ -1,6 +1,7 @@
 'use strict';
 
 var marked = require('marked'); // Markdown engine
+var fs = require('fs'); // File system
 
 // -------------------------------------------
 // Helpers

@@ -26,6 +26,7 @@ router.route('/')
   .post(upload.fields(fields), posts.add);
 
 router.route('/:id')
-  .get(posts.findById);
+  .get(posts.findById)
+  .put(posts.update);
 
 module.exports = router;

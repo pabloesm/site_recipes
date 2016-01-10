@@ -101,6 +101,15 @@
   font-style: normal;
   font-weight: 400;
   src: local("Open Sans"), local("OpenSans"), url("http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2") format("woff2"); }
+/***** Sticky footer styles Bootstrap solution *****/
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  margin-bottom: 80px; }
+
+/*********/
 .navbar {
   border-bottom: 1px solid rgba(221, 221, 221, 0.41);
   top: 0px;
@@ -303,9 +312,12 @@ body {
 
 footer {
   background-color: #3c3c3c;
-  overflow: hidden;
   height: 80px;
-  margin-top: 50px; }
+  margin-top: 50px;
+  /***** Sticky footer styles Bootstrap solution *****/
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
 
 footer {
   color: #9f9f9f;

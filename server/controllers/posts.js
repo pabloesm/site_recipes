@@ -11,6 +11,7 @@ var liststr2array = utils.liststr2array;
 var listnum2array = utils.listnum2array;
 var arrayOfObjects = utils.arrayOfObjects;
 var typeOfID = utils.typeOfID;
+var photoUrl = utils.photoUrl;
 
 exports.findAll = function(req, res) {
 	// Return all posts
@@ -98,6 +99,39 @@ exports.add = function(req, res) {
 			return res.send(post);
 		} else {
 			console.log(err);
+		}
+	});
+
+};
+
+exports.update = function(req, res) {
+	console.log('Updating post...');
+
+	var query = {_id: req.body._id};
+	var updatedValues = {};
+
+	var keysObj = Object.keys(req.body);
+	keysObj.forEach(function(val) {
+		if (val[0] !== '_') {
+			if (val === 'keywords') {
+				var keys = liststr2array(req.body[val]);
+				updatedValues[val] = arrayOfObjects(keys, 'keyword');
+			} else if (val === 'coordinates') {
+				var coordinates = listnum2array(req.body[val]);
+				updatedValues[val] = arrayOfObjects(coordinates, 'coordinate');
+			} else {
+				updatedValues[val] = req.body[val];
+			}
+		}
+	});
+
+	PostModel.update(query, { $set: updatedValues }, function(err) {
+		if (!err) {
+			console.log('Post updated.');
+			res.sendStatus(200);
+		} else {
+			console.log(err);
+			res.sendStatus(500);
 		}
 	});
 
