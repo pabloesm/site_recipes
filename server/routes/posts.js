@@ -27,6 +27,7 @@ router.route('/')
 
 router.route('/:id')
   .get(posts.findById)
-  .put(posts.update);
+  .put(posts.update)
+  .delete(posts.remove);
 
 module.exports = router;

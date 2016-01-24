@@ -41,7 +41,10 @@ module.exports = Backbone.View.extend({
 
 	removePost: function() {
 		console.log('removePost()');
-		new RemoveView();
+		var postCollection = PostCollection();
+		new RemoveView({
+			collection: postCollection,
+		});
 	},
 });
 

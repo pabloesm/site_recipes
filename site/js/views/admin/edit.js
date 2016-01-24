@@ -28,7 +28,7 @@ module.exports = Backbone.View.extend({
 	},
 
 	render: function() {
-		var source = $('#editPostSelect').html();
+		var source = $('#selectPost').html();
 		var	template = Handlebars.compile(source);
 		var data = {};
 		data.arr = this.collection.map(function(model) {

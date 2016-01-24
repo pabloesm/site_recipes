@@ -2,6 +2,9 @@
 
 var marked = require('marked'); // Markdown engine
 var fs = require('fs'); // File system
+var rimraf = require('rimraf'); // rm -rf for node
+var path = require('path'); // Path utilities
+var appRootDir = require('app-root-dir').get(); // Get root directory
 
 // -------------------------------------------
 // Helpers
@@ -90,4 +93,19 @@ exports.listnum2array = function(keys) {
 	  	Returns an array of trimmed keys.*/
 	var array =  keys.split(',');
 	return array.map(function(el) { return +el; });
+};
+
+exports.removeData = function(pathImage) {
+	/* pathImage indicates the folder where post images are stores. This function
+	removes that folder and all the images. */
+	var pathParsed = path.parse(pathImage);
+	var pathArray = pathParsed.dir.split(path.sep);
+	var pathToRem = path.join(appRootDir, pathArray[1], pathArray[2], pathArray[3], pathArray[4]);
+	rimraf(pathToRem, function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('Post images removed.');
+		}
+	});
 };

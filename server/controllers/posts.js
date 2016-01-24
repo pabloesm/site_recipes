@@ -12,6 +12,7 @@ var listnum2array = utils.listnum2array;
 var arrayOfObjects = utils.arrayOfObjects;
 var typeOfID = utils.typeOfID;
 var photoUrl = utils.photoUrl;
+var removeData = utils.removeData;
 
 exports.findAll = function(req, res) {
 	// Return all posts
@@ -135,5 +136,25 @@ exports.update = function(req, res) {
 		}
 	});
 
+};
+
+exports.remove = function(req, res) {
+	console.log('Removing post...');
+	var query = {_id: req.params.id};
+	PostModel.findOne(query, 'photoMain', function(err, data) {
+		if (!err) {
+			PostModel.find(query).remove(function(err) {
+				if (!err) {
+					removeData(data.photoMain);
+					console.log('Post removed.');
+					res.sendStatus(200);
+				} else {
+					console.log(err);
+				}
+			});
+		} else {
+			consoel.log(err);
+		}
+	});
 };
 
