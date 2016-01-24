@@ -8,9 +8,7 @@ var Backbone = require('backbone'),
 Backbone.$ = $;
 
 var PostPreview = require('../views/postPreview'); // The path is redundant, we are in /views
-
-
-var postCollection;
+var postCollection; // Used in the singleton pattern
 
 var PostCollection = Backbone.View.extend({
 

@@ -15,8 +15,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'site/app.bundle.js': 'site/js/app/app.js'
-					//'site/admin.bundle.js': 'site/js/app/admin.js'
+					//'site/app.bundle.js': 'site/js/app/app.js'
+					'site/admin.bundle.js': 'site/js/app/admin.js'
 				}
 			}
 		},
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
-			files: ['server.js', 'routes/*.js', 'site/js/*/*.js', 'site/js/*.js', 'site/css/*.scss'],
+			files: ['server.js', 'routes/*.js', 'site/js/*.js', 'site/js/*/*.js', 'site/js/*/*/*.js', 'site/css/*.scss'],
 			tasks: ['eslint', 'browserify', 'sass']
 		},
 

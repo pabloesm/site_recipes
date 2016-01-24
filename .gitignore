@@ -10,7 +10,8 @@ node_modules
 
 data
 
-.sass-cache
+.sass-cache/
+*.css.map
 
 recipes.sublime-project
 recipes.sublime-workspace

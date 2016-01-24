@@ -2,15 +2,13 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery');
+var Backbone = require('backbone');
+var	$ = require('jquery');
 
 Backbone.$ = $;
 
-
-var EditView = require('../views/edit')
-
+var AdminMainView = require('../views/admin/main');
 
 $(function() {
-	new EditView();
+	new AdminMainView();
 });
