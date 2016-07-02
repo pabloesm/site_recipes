@@ -3,7 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var	options = {port: 3011};
+var	options = { port: 3011 };
 var app = express();
 var parseUrlencoded = bodyParser.urlencoded({ extended: true });
 

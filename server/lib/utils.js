@@ -96,7 +96,7 @@ exports.listnum2array = function(keys) {
 };
 
 exports.removeData = function(pathImage) {
-	/* pathImage indicates the folder where post images are stores. This function
+	/* pathImage indicates the folder where post images are stored. This function
 	removes that folder and all the images. */
 	var pathParsed = path.parse(pathImage);
 	var pathArray = pathParsed.dir.split(path.sep);
