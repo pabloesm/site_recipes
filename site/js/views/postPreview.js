@@ -1,15 +1,16 @@
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery'),
-	_ = require('underscore'),
-	Handlebars = require('handlebars');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
 
 Backbone.$ = $;
 
-var PostModel = require('../models/post');
+//var PostModel = require('../models/post');
+import PostModel from '../models/post';
 
-module.exports = Backbone.View.extend({
+export default Backbone.View.extend({
 	tagName: 'div',
 
 	className: 'preview',

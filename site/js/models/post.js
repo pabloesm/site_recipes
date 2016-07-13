@@ -1,11 +1,11 @@
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery');
+import Backbone from 'backbone';
+import $ from 'jquery';
 
 Backbone.$ = $;
 
-module.exports = Backbone.Model.extend({
+export default Backbone.Model.extend({
 	idAttribute: '_id',
 
 	// urlRoot : 'api/posts/expressjs',

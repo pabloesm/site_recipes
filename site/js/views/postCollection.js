@@ -1,14 +1,17 @@
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery'),
-	_ = require('underscore'),
-	Handlebars = require('handlebars');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
 
 Backbone.$ = $;
 
-var PostPreview = require('../views/postPreview'); // The path is redundant, we are in /views
+//var PostPreview = require('../views/postPreview'); // The path is redundant, we are in /views
+import PostPreview from '../views/postPreview'; // The path is redundant, we are in /views
 var postCollection; // Used in the singleton pattern
+
+
 
 var PostCollection = Backbone.View.extend({
 
@@ -40,7 +43,7 @@ var PostCollection = Backbone.View.extend({
 });
 
 // Singleton pattern
-module.exports = function(options) {
+export default function(options) {
 	if (!postCollection) postCollection = new PostCollection(options);
 	return postCollection;
 };

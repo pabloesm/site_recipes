@@ -1,14 +1,17 @@
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery'),
-	_ = require('underscore');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
 
-var PostCollection = require('../collections/postCollection'),
-	PostCollectionView = require('../views/postCollection'),
-	PostView = require('../views/post');
+import PostCollection from '../collections/postCollection';
+import PostCollectionView from '../views/postCollection';
+import PostView from '../views/post';
+//var PostCollection = require('../collections/postCollection');
+//var	PostCollectionView = require('../views/postCollection');
+//var	PostView = require('../views/post');
 
-module.exports = Backbone.Router.extend({
+export default Backbone.Router.extend({
 	routes:  {
 		'': 'init',
 

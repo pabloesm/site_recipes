@@ -2,11 +2,10 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery');
+import Backbone from 'backbone';
+import $ from 'jquery';
 
-var slick = require('slick-carousel');
-
+import slick from 'slick-carousel';
 
 Backbone.$ = $;
 
@@ -16,26 +15,29 @@ Backbone.$ = $;
 // 	new PostView({el: $("#post-container")});
 // });
 
-
-var PostCollection = require('../collections/postCollection');
-var PostCollectionView = require('../views/postCollection');
-var Router = require('../routes/router');
-
-var MenuView = require('../views/menuView');
+import PostCollection from '../collections/postCollection';
+import PostCollectionView from '../views/postCollection';
+import Router from '../routes/router';
+import MenuView from '../views/menuView';
 
 $(function() {
+
+	new MenuView({el: $('.navbar')});
+
+	$('.slick-carousel')
+	.on('init', function(){
+		console.log('carousel init');
+		$('#carousel').css('visibility', 'visible');
+	})
+	.slick({
+		autoplay: true,
+		dots: true
+	});
 
 	var postCollection = PostCollection();
 	PostCollectionView({
 		collection: postCollection,
 		el: $('#post-container')
-	});
-
-	new MenuView({el: $('.navbar')});
-
-	$('.slick-carousel').slick({
-		autoplay: true,
-		dots: true
 	});
 
 });

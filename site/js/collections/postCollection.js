@@ -1,9 +1,10 @@
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery');
+import Backbone from 'backbone';
+import $ from 'jquery';
 
-var PostModel = require('../models/post')
+//var PostModel = require('../models/post');
+import PostModel from '../models/post';
 
 Backbone.$ = $;
 
@@ -16,7 +17,7 @@ var PostCollection = Backbone.Collection.extend({
 
 
 // Singleton pattern
-module.exports = function() {
+export default function() {
 	if (!postCollection) {
 		postCollection = new PostCollection();
 		console.log('New PostCollection created.');

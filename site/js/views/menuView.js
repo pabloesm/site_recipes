@@ -1,14 +1,13 @@
 'use strict';
 
-var Backbone = require('backbone'),
-	$ = require('jquery'),
-	_ = require('underscore');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
 
 Backbone.$ = $;
 
 
-module.exports = Backbone.View.extend({
-
+export default Backbone.View.extend({
 	events: {
 		'click a': 'toggleActive'
 	},

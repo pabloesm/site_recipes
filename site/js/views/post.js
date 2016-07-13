@@ -1,15 +1,16 @@
 'use strict';
 
-var Backbone = require('backbone');
-var	$ = require('jquery');
-var	_ = require('underscore');
-var	Handlebars = require('handlebars');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
 
 Backbone.$ = $;
 
-var PostModel = require('../models/post');
+import PostModel from '../models/post';
+//var PostModel = require('../models/post');
 
-module.exports = Backbone.View.extend({
+export default Backbone.View.extend({
 	el: '#post-container',
 
 	initialize: function(url) {

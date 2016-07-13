@@ -1,10 +1,10 @@
 'use strict';
 
-var Backbone = require('backbone');
-var	$ = require('jquery');
-var	_ = require('underscore');
-var	slug = require('slug'); // String processing
-var Handlebars = require('handlebars');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
+import slug from 'slug'; // String processing
 
 require('../../lib/backbone-model-file-upload.js');
 
