@@ -1,18 +1,18 @@
 'use strict';
 
-var Backbone = require('backbone');
-var	$ = require('jquery');
-var	_ = require('underscore');
-var Handlebars = require('handlebars');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
 var toMarkdown = require('to-markdown');
-var	slug = require('slug'); // String processing
+import slug from 'slug'; // String processing
 
 Backbone.$ = $;
 
 // var PostModel = require('../../models/post');
 //var PostCollection = require('../../collections/postCollection');
 
-module.exports = Backbone.View.extend({
+export default Backbone.View.extend({
 	el: '#content',
 
 	events: {

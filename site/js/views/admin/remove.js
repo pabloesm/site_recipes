@@ -1,13 +1,13 @@
 'use strict';
 
-var Backbone = require('backbone');
-var	$ = require('jquery');
-var	_ = require('underscore');
-var Handlebars = require('handlebars');
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import Handlebars from 'handlebars';
 
 Backbone.$ = $;
 
-module.exports = Backbone.View.extend({
+export default Backbone.View.extend({
 	el: '#content',
 
 	events: {

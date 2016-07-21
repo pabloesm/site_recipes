@@ -13,6 +13,9 @@ var arrayOfObjects = utils.arrayOfObjects;
 var typeOfID = utils.typeOfID;
 var photoUrl = utils.photoUrl;
 var removeData = utils.removeData;
+var imageManagement = utils.imageManagement;
+
+var marked = require('marked'); // Markdown engine
 
 exports.findAll = function(req, res) {
 	// Return all posts
@@ -60,19 +63,23 @@ exports.add = function(req, res) {
 	var year = date.getFullYear();
 	var currentTime = date.getTime();
 
-	var photoPath = 'data/img/' + year + '/' + req.body.idReadable;
+	var imagePath = 'data/img/' + req.body.dateYear + '/' + req.body.dateMonth + '/' + req.body.idReadable;
+	imageManagement(req.files, imagePath);
+
 	var keys = liststr2array(req.body.keywords);
 	var coordinates = listnum2array(req.body.coordinates);
 
-	var urls = photoUrl(req.files, photoPath);
-	console.log(urls);
+	//var tokens = marked.lexer(req.body.body);
+	//console.log(marked.parser(tokens));
+	// TODO: buscar todas las imágenes del post y seleccionar cual va a ser la princial,
+	// si no existe usar imagen por defecto. Añadir la principal como un campo del post.
 
 	var post = new PostModel({
 		title: req.body.title,
+		dateYear: req.body.dateYear,
+		dateMonth: req.body.dateMonth,
 		body: req.body.body,
 		idReadable: req.body.idReadable,
-		photoMain: urls.photoMain,
-		photoOthers: arrayOfObjects(urls.photoOthers, 'photo'),
 		keywords: arrayOfObjects(keys, 'keyword'),
 		date: currentTime,
 		postType: req.body.postType,
@@ -82,21 +89,9 @@ exports.add = function(req, res) {
 		coordinates: arrayOfObjects(coordinates, 'coordinate'),
 	});
 
-	mkdirp(photoPath, function(err) {
-		if (err) {
-			console.error(err);
-		} else {
-			console.log('Directory ' + req.body.idReadable + ' created.');
-			relocate(req.files.photoMain, photoPath);
-			if (req.files.photoOthers !== undefined) {
-				relocate(req.files.photoOthers, photoPath);
-			}
-		}
-	});
-
 	return post.save(function(err) {
 		if (!err) {
-			console.log('Post "' + req.body.title + '" saved');
+			console.log('Post "' + req.body.title + '" saved.');
 			return res.send(post);
 		} else {
 			console.log(err);
@@ -141,11 +136,11 @@ exports.update = function(req, res) {
 exports.remove = function(req, res) {
 	console.log('Removing post...');
 	var query = {_id: req.params.id};
-	PostModel.findOne(query, 'photoMain', function(err, data) {
+	PostModel.findOne(query, 'idReadable', function(err, data) {
 		if (!err) {
 			PostModel.find(query).remove(function(err) {
 				if (!err) {
-					removeData(data.photoMain);
+					// TODO: remove images related with the post
 					console.log('Post removed.');
 					res.sendStatus(200);
 				} else {

@@ -4,12 +4,16 @@
   "description": "backbone.js example",
   "main": "app.js",
   "scripts": {
-    "initdb": "mongod -dbpath ~/work/mongodb/data/db",
-    "initdb_pi": "mongod --journal -dbpath ~/pablo/mongodb/data/db/",
-    "start": "node server.js",
+    "start-db": "mongod -dbpath ~/work/mongodb/data/db",
+    "start-db_pi": "mongod --journal -dbpath ~/pablo/mongodb/data/db/",
+    "start-server": "node server.js",
+    "debug-server": "node-debug --no-preload --hidden='node_modules' server.js",
+    "start-back": "npm run start-db & npm run start-server",
     "build-app": "browserify site/js/app/app.js -o site/app.bundle.js -dv -t [ babelify --presets [ es2015 ] ]",
     "build-admin": "browserify site/js/app/admin.js -o site/admin.bundle.js -dv -t [ babelify --presets [ es2015 ] ]",
-    "watch-app": "watchify site/js/*/*.js -o site/app.bundle.js -dv -t [ babelify --presets [ es2015 ] ]"
+    "watch-js": "watchify site/js/*/*.js -o site/app.bundle.js -dv -t [ babelify --presets [ es2015 ] ] & watchify site/js/app/admin.js -o site/admin.bundle.js -dv -t [ babelify --presets [ es2015 ] ]",
+    "watch-sass": "sass --watch site/css:site/css",
+    "watch": "npm run watch-js & npm run watch-sass"
   },
   "repository": {
     "type": "git",

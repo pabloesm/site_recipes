@@ -25,7 +25,7 @@ export default Backbone.View.extend({
 		// this.el is what we defined in tagName. use $el to get access
 		// to the jQuery html() function
 
-		var source = $('#postTemplate').html();
+		var source = $('#postTemplateNew').html();
 		var template = Handlebars.compile(source);
 		var templateData = this.model.attributes;
 		templateData.hasContactInfo = templateData.address !== undefined ? true : false;

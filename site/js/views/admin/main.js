@@ -1,15 +1,15 @@
 'use strict';
 
-var Backbone = require('backbone');
-var $ = require('jquery');
-var	_ = require('underscore');
-var	slug = require('slug'); // String processing
+import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
+import slug from 'slug'; // String processing
 
-var AddView = require('./add');
-var EditView = require('./edit');
-var RemoveView = require('./remove');
+import AddView from './add';
+import EditView from './edit';
+import RemoveView from './remove';
 
-var PostCollection = require('../../collections/postCollection');
+import PostCollection from '../../collections/postCollection';
 
 Backbone.$ = $;
 

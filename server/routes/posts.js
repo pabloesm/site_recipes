@@ -17,8 +17,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 var fields = [
-    {name: 'photoMain', maxCount: 1},
-    {name: 'photoOthers', maxCount: 10},
+    {name: 'images', maxCount: 10}
   ];
 
 router.route('/')

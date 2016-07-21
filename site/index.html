@@ -113,6 +113,35 @@
 		</div>
 	</script>
 
+	<script id="postTemplateNew" type="text/x-handlebars-template">
+		<div class="eight columns offset-by-two">
+
+			<h3 class="post-title">{{title}}</h3>
+			<div class="post-photomain">
+				<img class="u-max-full-width" src={{photoMain}}>
+			</div>
+
+			<p>{{{body}}}</p>
+
+      {{#if hasContactInfo}}
+				<h5>{{title}}</h5>
+				<div class="contact">
+					<p>{{address}}</p>
+					<p>{{phone}}</p>
+					<a href="{{url}}" target="_blanket">{{url}}</a>
+				</div>
+			{{/if}}
+
+			<div class="keywords">
+				<p id="category">Categorías:</p>
+				{{#each keywords}}
+					<p>{{keyword}}</p>
+				{{/each}}
+			</div>
+
+		</div>
+	</script>
+
 	<script id="postPreviewTemplate" type="text/x-handlebars-template">
 		<div class="one-third column">
 			<div class="post-photomain" >

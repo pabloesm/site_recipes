@@ -9,11 +9,12 @@ import slug from 'slug'; // String processing
 require('../../lib/backbone-model-file-upload.js');
 
 // var PostModel = require('../../models/post');
-var PostCollection = require('../../collections/postCollection');
+
+import PostCollection from '../../collections/postCollection';
 
 Backbone.$ = $;
 
-module.exports = Backbone.View.extend({
+export default Backbone.View.extend({
 	el: '#content',
 
 	events:{
@@ -41,7 +42,7 @@ module.exports = Backbone.View.extend({
 
 		$('#addForm > div').children('textarea, input, select').each(function(i, el) {
 			if ($(el).val() != '') {
-				if (el.id === 'photoMain' || el.id === 'photoOthers') {
+				if (el.id === 'images') {
 					$.each($(el)[0].files, function(file) {
 						data.append(el.id, this);
 					});

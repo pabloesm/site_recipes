@@ -31,9 +31,36 @@
 		<form id="addForm" action="?">
 			<div>
 				<label for="title">Title: </label><input id="title" type="text" required>
-				<label for="photoMain">Main photo: </label><input id="photoMain" type="file" required>
+
+				<label for="dateYear">Year: </label>
+				<select name="dateYear" id="dateYear">
+					<option value="2016">2016</option>
+					<option value="2017">2017</option>
+					<option value="2018">2018</option>
+					<option value="2019">2019</option>
+					<option value="2020">2020</option>
+				</select>
+
+				<label for="dateMonth">Month: </label>
+				<select name="dateMonth" id="dateMonth">
+					<option value="01">01</option>
+					<option value="02">02</option>
+					<option value="03">03</option>
+					<option value="04">04</option>
+					<option value="05">05</option>
+					<option value="06">06</option>
+					<option value="07">07</option>
+					<option value="08">08</option>
+					<option value="09">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>
+
+				<label for="images">Images: </label><input id="images" type="file" multiple>
+
 				<label for="body">Body (we support <a href="https://help.github.com/articles/markdown-basics/" target="_blank">Markdown Formatting Syntax</a>): </label><textarea id="body" rows="10" cols="50" required></textarea>
-				<label for="photoOthers">Other photos: </label><input id="photoOthers" type="file" multiple>
+
 				<label for="keywords">Keywords (separated by comma): </label><input id="keywords" type="text">
 
 				<label for="postType">Type of post: </label>

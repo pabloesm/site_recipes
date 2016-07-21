@@ -2,12 +2,12 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-var	$ = require('jquery');
+import Backbone from 'backbone';
+import $ from 'jquery';
 
 Backbone.$ = $;
 
-var AdminMainView = require('../views/admin/main');
+import AdminMainView from '../views/admin/main';
 
 $(function() {
 	new AdminMainView();

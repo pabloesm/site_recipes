@@ -5,6 +5,7 @@ var fs = require('fs'); // File system
 var rimraf = require('rimraf'); // rm -rf for node
 var path = require('path'); // Path utilities
 var appRootDir = require('app-root-dir').get(); // Get root directory
+var mkdirp = require('mkdirp'); // Like mkdir -p, but in node.js
 
 // -------------------------------------------
 // Helpers
@@ -19,6 +20,32 @@ exports.relocate = function(files, newPath) {
 				console.log('Renamed.');
 			}
 		});
+	});
+};
+
+/**
+* Processes the images uploaded in each post. The images
+* are moved (and renamed) from the temporal folder to the post folder,
+* which is created as necessary. In addition, they should be
+* renamed to maintain the orignal name. Temporal files are removed
+* after this operation.
+*
+* @param {Object} files whose property 'images' in an array
+* with an element per image. Each element contains, among other
+* fields, the path and the original name.
+* @param {String} path indicates the path corresponding to the
+* current post.
+*/
+exports.imageManagement = function(files, path) {
+	if (files.images.length < 1) {
+		return;
+	}
+	mkdirp.sync(path);
+	files.images.forEach(function(img) {
+		var oldPath = img.path;
+		var newPath = path + '/' + img.originalname;
+		fs.renameSync(oldPath, newPath);
+		console.log('Image ' + img.originalname + ' relocated.');
 	});
 };
 
