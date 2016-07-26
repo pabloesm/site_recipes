@@ -19,6 +19,7 @@ var PostSchema = new mongoose.Schema({
 	dateYear: Number,
 	dateMonth: Number,
 	body: {type: String, default: 'The post body...'},
+	coverImage: String,
 	idReadable: {type: String, default: 'post-title'},
 	keywords: [Keywords],
 	date: Date,

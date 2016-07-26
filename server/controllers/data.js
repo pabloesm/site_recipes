@@ -34,7 +34,7 @@ exports.getImageNew = function(req, res) {
 
 	res.sendFile(fileName, options, function(err) {
 		if (!err) {
-			console.log('Sent: ', fileName);
+			console.log('Sent from server/controllers/data: ', fileName);
 		} else {
 			console.log(err);
 			res.status(err.status).end();

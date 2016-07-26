@@ -7,6 +7,8 @@ var path = require('path'); // Path utilities
 var appRootDir = require('app-root-dir').get(); // Get root directory
 var mkdirp = require('mkdirp'); // Like mkdir -p, but in node.js
 
+var IMAGE_DEFAULT = 'api/data/img/default/default/default.jpg';
+
 // -------------------------------------------
 // Helpers
 // -------------------------------------------
@@ -40,6 +42,7 @@ exports.imageManagement = function(files, path) {
 	if (files.images.length < 1) {
 		return;
 	}
+
 	mkdirp.sync(path);
 	files.images.forEach(function(img) {
 		var oldPath = img.path;
@@ -47,6 +50,70 @@ exports.imageManagement = function(files, path) {
 		fs.renameSync(oldPath, newPath);
 		console.log('Image ' + img.originalname + ' relocated.');
 	});
+};
+
+/**
+* Search the main imagen in the post text formated in
+* markdown.
+*/
+exports.parseImageRoutes = function(text) {
+	var markdownLinks = getImagesMarkdown(text);
+	var urls = getImagesPath(markdownLinks);
+	var mainImage = getImageMain(urls);
+
+	return mainImage;
+};
+
+/**
+* Parses markdown text and extracts images information.
+*/
+function getImagesMarkdown(textMarkDown) {
+	var markdownLinks = [];
+	var regex = /(\!\[.*?\]\(.*?\))+/g;
+	var match = regex.exec(textMarkDown);
+	var url = '';
+
+	while (match != null) {
+		markdownLinks.push(match[1]);
+		match = regex.exec(textMarkDown);
+	}
+
+	return markdownLinks;
+};
+
+/**
+* Parses markdown images information and extracts urls.
+*/
+function getImagesPath(markdownLinks) {
+	var urls = [];
+	markdownLinks.forEach(function(e) {
+		var match = /\(.*\)/.exec(e);
+		urls.push(match[0].slice(1, match[0].length - 1));
+	});
+
+	return urls;
+};
+
+function getImageMain(urls) {
+	// Get the '_main' if exists, else the first image, else
+	// the default image
+	var url = '';
+
+	if (urls.length == 0) {
+		return IMAGE_DEFAULT;
+	};
+
+	urls.forEach(function(e) {
+		if (e.indexOf('_main') > -1) {
+			url = e;
+		};
+	});
+
+	if (url.length == 0) {
+		url = urls[0];
+	}
+
+	return url;
 };
 
 exports.photoUrl = function(files, path) {
@@ -122,17 +189,32 @@ exports.listnum2array = function(keys) {
 	return array.map(function(el) { return +el; });
 };
 
-exports.removeData = function(pathImage) {
-	/* pathImage indicates the folder where post images are stored. This function
-	removes that folder and all the images. */
-	var pathParsed = path.parse(pathImage);
+/**
+* Removes the folder containing images of a given post.
+*/
+exports.removeData = function(postImagesFolder) {
+	var pathToRem = path.join(appRootDir, postImagesFolder);
+	rimraf(pathToRem, function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('Post images folder: ' + postImagesFolder + ' removed. (server/lib/utils)');
+		}
+	});
+};
+
+/**
+* Removes the folder containing images of a given post.
+*/
+exports.removeData2 = function(postImagesFolder) {
+	var pathParsed = path.parse(postImagesFolder);
 	var pathArray = pathParsed.dir.split(path.sep);
 	var pathToRem = path.join(appRootDir, pathArray[1], pathArray[2], pathArray[3], pathArray[4]);
 	rimraf(pathToRem, function(err) {
 		if (err) {
 			console.log(err);
 		} else {
-			console.log('Post images removed.');
+			console.log('Post images removed. (server/lib/utils)');
 		}
 	});
 };

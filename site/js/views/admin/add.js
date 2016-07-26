@@ -58,7 +58,7 @@ export default Backbone.View.extend({
 			}
 
 			//Clear input field values
-			//$(el).val('');
+			$(el).val('');
 
 		});
 

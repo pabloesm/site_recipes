@@ -14,6 +14,7 @@ var typeOfID = utils.typeOfID;
 var photoUrl = utils.photoUrl;
 var removeData = utils.removeData;
 var imageManagement = utils.imageManagement;
+var parseImageRoutes = utils.parseImageRoutes;
 
 var marked = require('marked'); // Markdown engine
 
@@ -21,7 +22,7 @@ exports.findAll = function(req, res) {
 	// Return all posts
 	return PostModel.find(function(err, posts) {
 		if (!err) {
-			console.log('Sending posts array returned by findAll().');
+			console.log('Sending from server/controllers/posts posts array returned by findAll().');
 			posts = bodyMarked(posts);
 			return res.send(posts);
 		} else {
@@ -73,12 +74,14 @@ exports.add = function(req, res) {
 	//console.log(marked.parser(tokens));
 	// TODO: buscar todas las imágenes del post y seleccionar cual va a ser la princial,
 	// si no existe usar imagen por defecto. Añadir la principal como un campo del post.
+	var coverImageUrl = parseImageRoutes(req.body.body);
 
 	var post = new PostModel({
 		title: req.body.title,
 		dateYear: req.body.dateYear,
 		dateMonth: req.body.dateMonth,
 		body: req.body.body,
+		coverImage: coverImageUrl,
 		idReadable: req.body.idReadable,
 		keywords: arrayOfObjects(keys, 'keyword'),
 		date: currentTime,
@@ -136,11 +139,18 @@ exports.update = function(req, res) {
 exports.remove = function(req, res) {
 	console.log('Removing post...');
 	var query = {_id: req.params.id};
-	PostModel.findOne(query, 'idReadable', function(err, data) {
+	PostModel.findOne(query, 'dateYear dateMonth idReadable', function(err, data) {
 		if (!err) {
+			var dateYear = data.dateYear;
+			var dateMonth = data.dateMonth;
+			if (dateMonth < 10) {
+				dateMonth = '0' + dateMonth;
+			};
+			var idReadable = data.idReadable;
+			var folderPath = 'data/img/' + dateYear + '/' + dateMonth + '/' + idReadable;
+			removeData(folderPath);
 			PostModel.find(query).remove(function(err) {
 				if (!err) {
-					// TODO: remove images related with the post
 					console.log('Post removed.');
 					res.sendStatus(200);
 				} else {
