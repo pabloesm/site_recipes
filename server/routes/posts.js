@@ -6,6 +6,8 @@ var multer = require('multer'); // Files upload
 
 var posts = require('../controllers/posts');
 
+var auth = require('../lib/authentication');
+
 // Multer file upload management
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -22,11 +24,11 @@ var fields = [
 
 router.route('/')
   .get(posts.findAll)
-  .post(upload.fields(fields), posts.add);
+  .post(upload.fields(fields), auth.userValidation, posts.add);
 
 router.route('/:id')
   .get(posts.findById)
-  .put(posts.update)
-  .delete(posts.remove);
+  .put(auth.userValidation, posts.update)
+  .delete(auth.userValidation, posts.remove);
 
 module.exports = router;
